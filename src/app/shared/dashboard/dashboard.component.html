@@ -1,22 +1,50 @@
 <aside class="h-screen bg-dark-gray w-[200px] fixed p-8">
-    <div>
-        <img src="assets/images/logo.png" alt="logo" />
+    <div class="mb-8 border-b-2 border-dark w-full">
+        <img src="assets/logos/safe-secret.png" alt="logo" class="w-24 mb-2" />
     </div>
 
-    <ul class="text-off-white">
-        <li>
-            <a routerLink="/all-items" class="mb-8 flex justify-between">
-                <div>
-                    <i class="fa-solid fa-shield"></i>
-                    All Items
-                </div>
-                <span>10</span>
-            </a>
-        </li>
-        
-        <li><a routerLink="/favorites" class="mb-8">Favorites</a></li>
-        <li><a routerLink="/notes">Notes</a></li>
-    </ul>
 
-    <button class="text-off-white align-baseline">Logout</button>
+    <div class="h-[80%] flex flex-col justify-between text-white">
+
+        <ul class="">
+            <li class="hover:text-off-white">
+                <a routerLink="/all-items" class="mb-4 flex justify-between">
+                    <div>
+                        <span  class="mr-2">
+                            <i class="fa-solid fa-shield"></i>
+                        </span>
+                        All Items
+                    </div>
+                    <span>10</span>
+                </a>
+            </li>
+            
+            <li class="hover:text-off-white">
+                <a routerLink="/favorites" class="mb-4 flex justify-between">
+                    <div>
+                        <span  class="mr-2">
+                            <i class="fa-solid fa-heart"></i>
+                        </span>                    
+                        Favorites
+                    </div>
+                    <span>10</span>
+                </a>
+            </li>
+    
+            <li class="hover:text-off-white">
+                <a routerLink="/notes" class="flex justify-between">
+                    <div>
+                        <span  class="mr-2">
+                            <i class="fa-solid fa-sticky-note"></i>
+                        </span>
+                        Notes
+                    </div>
+                    <span>10</span>
+                </a>            
+            </li>
+        </ul>
+
+        <button class="hover:text-off-white inline-block align-bottom max-w-max"><span class="mr-2"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>Logout</button>
+
+    </div>
 </aside>
