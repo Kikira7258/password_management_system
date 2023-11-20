@@ -1,1 +1,46 @@
-<p>login works!</p>
+<main class="h-screen bg-no-repeat bg-cover bg-center bg-[url(assets/backgrounds/bg1.png)]">
+
+    <div class="login-container w-1/2 h-fit flex items-stretch rounded-md overflow-hidden">
+        <!-- Login -->
+        <div class="bg-white w-1/2 p-6 text-dark-gray">
+            <h1 class="text-2xl text-center mb-4">Login</h1>
+            <form>
+                <div>
+                    <div class="login-input mb-4">
+                        <input type="text" name="Email" required="" />
+                        <label>Email</label>
+                    </div>
+                    <div class="login-input">
+                        <input type="password" name="Password" required="" />
+                        <label>Password</label>
+                    </div>
+                </div>
+
+                <div class="text-xs flex flex-wrap justify-between mt-4">
+                    <div class="flex items-center">
+                        <input class="mr-2" type="checkbox" />
+                        <span>Remember me</span>
+                    </div>
+                    <span>Forgot Password?</span>
+                </div>
+
+                <button class="mt-8 mb-4 bg-cyan w-40 rounded-md shadow-md shadow-off-white py-[4px]">Login</button>
+                
+                <p class="text-center text-xs">Or use your account</p>
+                
+                <div class="flex gap-4 max-w-max mx-auto mt-4">
+                    <button><img class="w-8 rounded-full" src="assets/logos/facebook.png" alt="Fackbook logo" /></button>
+                    <button><img class="w-8 rounded-full" src="assets/logos/google.png" alt="Google logo" /></button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Welcome back -->
+        <div class="w-1/2 p-6 bg-no-repeat bg-cover bg-center bg-[url(assets/backgrounds/bg2.png)]">
+            <h1 class="text-2xl text-off-white text-center mb-8">Welcome back</h1>
+            <p class="text-off-white text-center">Don't have an account?<br><span>register here.</span></p>
+
+            <button class="mt-8 mb-4 bg-off-white w-40 rounded-md shadow-md shadow-dark-gray py-[4px]">Register</button>
+        </div>
+    </div>
+</main>
