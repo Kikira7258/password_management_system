@@ -18,13 +18,15 @@
 
                 <div class="text-xs flex flex-wrap justify-between mt-4">
                     <div class="flex items-center">
-                        <input class="mr-2" type="checkbox" />
-                        <span>Remember me</span>
+                        <input class="mr-2" type="checkbox" name="remember" id="remember" />
+                        <label for="remember">Remember me</label>                        
                     </div>
-                    <span>Forgot Password?</span>
+                    <a href="">Forgot Password?</a>
                 </div>
 
-                <button class="mt-8 mb-4 bg-cyan w-40 rounded-md shadow-md shadow-off-white py-[4px]">Login</button>
+                <div class="flex flex-col items-center mt-8 mb-4">
+                    <button class="bg-cyan w-40 rounded-md shadow-md shadow-off-white py-[4px]" routerLink="/all-items">Login</button>
+                </div>
                 
                 <p class="text-center text-xs">Or use your account</p>
                 
@@ -36,11 +38,17 @@
         </div>
 
         <!-- Welcome back -->
-        <div class="w-1/2 p-6 bg-no-repeat bg-cover bg-center bg-[url(assets/backgrounds/bg2.png)]">
-            <h1 class="text-2xl text-off-white text-center mb-8">Welcome back</h1>
-            <p class="text-off-white text-center">Don't have an account?<br><span>register here.</span></p>
-
-            <button class="mt-8 mb-4 bg-off-white w-40 rounded-md shadow-md shadow-dark-gray py-[4px]">Register</button>
+        <div class="w-1/2 bg-no-repeat bg-cover bg-center bg-[url(assets/backgrounds/bg2.png)]">
+            <div class="bg-dark p-6 h-full bg-opacity-50">
+                <div class="py-20 flex flex-col justify-between h-full">
+                    <h1 class="text-2xl text-off-white text-center">Welcome back</h1>
+                    <p class="text-off-white text-center">Don't have an account?<br><span>register here.</span></p>
+                    
+                    <div class="flex flex-col items-center">
+                        <button class="bg-off-white w-40 rounded-md shadow-md shadow-dark-gray py-[4px]" routerLink="/registration">Register</button>
+                    </div>                 
+                </div>
+            </div>
         </div>
     </div>
 </main>

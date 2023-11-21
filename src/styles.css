@@ -17,6 +17,7 @@ body {
 
 
 
+/* Login CSS starts here */
 .login-container {
     position: absolute;
     top: 50%;
@@ -59,3 +60,4 @@ body {
     color: #44F6E1;
     font-size: 12px;
 }
+/* Login CSS ends here */
