@@ -1,1 +1,59 @@
-<p>registration works!</p>
+<main class="h-screen bg-no-repeat bg-cover bg-center bg-[url(assets/backgrounds/bg1.png)]">
+
+    <div class="register-container w-1/2 h-fit flex items-stretch rounded-md overflow-hidden">
+
+        <!-- Welcome -->
+        <div class="w-1/2 bg-no-repeat bg-cover bg-center bg-[url(assets/backgrounds/bg2.png)]">
+            <div class="bg-dark p-6 h-full bg-opacity-50">
+                <div class="py-20 flex flex-col justify-between h-full">
+                    <h1 class="text-2xl text-off-white text-center">Welcome back</h1>
+                    <p class="text-off-white text-center">If you already have an account, log in here</p>
+                    
+                    <div class="flex flex-col items-center">
+                        <button class="bg-off-white w-40 rounded-md shadow-md shadow-dark-gray py-[4px]" routerLink="/login">Login</button>
+                    </div>                 
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- Register -->
+        <div class="bg-white w-1/2 p-6 text-dark-gray">
+            <h1 class="text-2xl text-center mb-4">Register</h1>
+            <form>
+                <div>
+                    <div class="flex justify-between gap-8">
+                        <div class="register-input">
+                            <input type="text" name="fname" required="" />
+                            <label for="fname">First Name</label>
+                        </div>
+                        <div class="register-input">
+                            <input type="text" name="lname" required="" />
+                            <label for="lname">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="register-input">
+                        <input type="text" name="Email" required="" />
+                        <label>Email</label>
+                    </div>
+                    <div class="register-input">
+                        <input type="password" name="Password" required="" />
+                        <label>Password</label>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center mb-4">
+                    <button class="bg-cyan w-40 rounded-md shadow-md shadow-off-white py-[4px]" routerLink="/all-items">Register</button>
+                </div>
+                
+                <p class="text-center text-xs">Or use your account</p>
+                
+                <div class="flex gap-4 max-w-max mx-auto mt-4">
+                    <button><img class="w-8 rounded-full" src="assets/logos/facebook.png" alt="Fackbook logo" /></button>
+                    <button><img class="w-8 rounded-full" src="assets/logos/google.png" alt="Google logo" /></button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</main>

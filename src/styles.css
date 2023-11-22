@@ -17,8 +17,8 @@ body {
 
 
 
-/* Login CSS starts here */
-.login-container {
+/* Login and Register CSS starts here */
+.login-container, .register-container {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -26,11 +26,11 @@ body {
     border-radius: px;
 }
 
-.login-container .login-input {
+.login-container .login-input, .register-container .register-input {
     position: relative;
 }
 
-.login-container .login-input input {
+.login-container .login-input input, .register-container .register-input input  {
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
@@ -42,7 +42,7 @@ body {
     background: transparent;
 }
 
-.login-container .login-input label {
+.login-container .login-input label, .register-container .register-input label {
     position: absolute;
     top: 0;
     left: 0;
@@ -54,10 +54,12 @@ body {
 }
 
 .login-container .login-input input:focus ~ label,
-.login-container .login-input input:valid ~ label {
+.login-container .login-input input:valid ~ label,
+.register-container .register-input input:focus ~ label,
+.register-container .register-input input:valid ~ label {
     top: -20px;
     left: 0;
     color: #44F6E1;
     font-size: 12px;
 }
-/* Login CSS ends here */
+/* Login and Register CSS ends here */
