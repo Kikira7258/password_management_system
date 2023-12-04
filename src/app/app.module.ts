@@ -10,6 +10,8 @@ import { LoginComponent } from './views/auth/login/login.component';
 import { DashboardComponent } from './shared/dashboard/dashboard.component';
 import { ItemsComponent } from './views/items/items.component';
 import { RegisterComponent } from './views/auth/register/register.component';
+import { AddItemComponent } from './views/items/add-item/add-item.component';
+import { EditItemComponent } from './views/items/edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { RegisterComponent } from './views/auth/register/register.component';
     LoginComponent,
     DashboardComponent,
     ItemsComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddItemComponent,
+    EditItemComponent
   ],
   imports: [
     BrowserModule,
