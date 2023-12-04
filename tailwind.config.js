@@ -13,6 +13,7 @@ module.exports = {
       'off-white': '#D9D9D9',
       'black': '#000000',
       'white': '#ffffff',
+      'red': '#FF543E'
     },
     fontFamily: {
       'poppins': ['Poppins', 'sans-serif']
