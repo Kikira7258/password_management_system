@@ -15,7 +15,7 @@
                 </div>
 
                 <!-- User profile -->
-                <div class="flex items-center">
+                <div class="flex items-center cursor-pointer" routerLink="/profile">
                     <img src="assets/temps/portrait.png" alt="logo" class="w-12 mb-2 mr-4 rounded-full" />
                     <div class="text-xs">
                         <p class="font-bold text-white">Moya James</p>
@@ -37,7 +37,7 @@
             <!-- Listings -->
             <div class="grid grid-cols-3 gap-8">
                 
-                <div class="bg-off-white text-dark-gray rounded-md p-4 flex-wrap">
+                <div class="bg-off-white text-dark-gray rounded-md p-4 flex-wrap cursor-pointer hover:bg-white" routerLink="/view-item/:id">
                     <div class="mb-4 max-w-max mx-auto">
                         <img src="assets/logos/google.png" alt="logo" class="w-20" />
                     </div>

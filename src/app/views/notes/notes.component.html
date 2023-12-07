@@ -29,7 +29,7 @@
                 <p class="text-off-white font-bold">Notes</p>
                 
                 <span>
-                    <a class="text-[1.5rem] py-[6px] px-[12px] bg-cyan text-dark rounded-md" routerLink="/add-item"><i class="fa-solid fa-plus"></i></a>
+                    <a class="text-[1.5rem] py-[6px] px-[12px] bg-cyan text-dark rounded-md" routerLink="/add-note"><i class="fa-solid fa-plus"></i></a>
                 </span>                
             </div>
 
@@ -43,7 +43,7 @@
                 </thead>
                 <tbody>
                     
-                    <tr class="border-b-[1px] border-dark-gray">
+                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white cursor-pointer" routerLink="/view-note/:id">
                         <td class="flex items-center px-2 py-4">                            
                             <img src="assets/logos/yahoo.png" alt="logo" class="w-8 rounded-full mr-4" />
                             <div>
@@ -55,14 +55,14 @@
                         <td class="p-2">Lorem ipsum dolor sit amet</td>
                         <td class="p-2">*********************************</td>
                         
-                        <td class="p-2">
-                            <button><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="mx-2"><i class="fa-solid fa-eye"></i></button>
-                            <button><i class="fa-solid fa-trash"></i></button>
+                        <td class="p-2 flex items-center gap-6">
+                            <button class="hover:text-warning" routerLink="/edit-note/:id"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="hover:text-success" routerLink="/view-note/:id"><i class="fa-solid fa-eye"></i></button>
+                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
 
-                    <tr class="border-b-[1px] border-dark-gray">
+                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
                         <td class="flex items-center px-2 py-4">                            
                             <img src="assets/logos/facebook.png" alt="logo" class="w-8 rounded-full mr-4" />
                             <div>
@@ -74,14 +74,14 @@
                         <td class="p-2">Lorem ipsum dolor sit amet</td>
                         <td class="p-2">*********************************</td>
                         
-                        <td class="p-2">
-                            <button><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="mx-2"><i class="fa-solid fa-eye"></i></button>
-                            <button><i class="fa-solid fa-trash"></i></button>
+                        <td class="p-2 flex items-center gap-6">
+                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
+                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
 
-                    <tr class="border-b-[1px] border-dark-gray">
+                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
                         <td class="flex items-center px-2 py-4">                            
                             <img src="assets/logos/instagram.png" alt="logo" class="w-8 rounded-full mr-4" />
                             <div>
@@ -93,14 +93,14 @@
                         <td class="p-2">Lorem ipsum dolor sit amet</td>
                         <td class="p-2">*********************************</td>
                         
-                        <td class="p-2">
-                            <button><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="mx-2"><i class="fa-solid fa-eye"></i></button>
-                            <button><i class="fa-solid fa-trash"></i></button>
+                        <td class="p-2 flex items-center gap-6">
+                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
+                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
 
-                    <tr class="border-b-[1px] border-dark-gray">
+                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
                         <td class="flex items-center px-2 py-4">                            
                             <img src="assets/logos/linkedin.png" alt="logo" class="w-8 rounded-full mr-4" />
                             <div>
@@ -112,14 +112,14 @@
                         <td class="p-2">Lorem ipsum dolor sit amet</td>
                         <td class="p-2">*********************************</td>
                         
-                        <td class="p-2">
-                            <button><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="mx-2"><i class="fa-solid fa-eye"></i></button>
-                            <button><i class="fa-solid fa-trash"></i></button>
+                        <td class="p-2 flex items-center gap-6">
+                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
+                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
 
-                    <tr class="border-b-[1px] border-dark-gray">
+                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
                         <td class="flex items-center px-2 py-4">                            
                             <img src="assets/logos/titok.png" alt="logo" class="w-8 rounded-full mr-4" />
                             <div>
@@ -131,14 +131,14 @@
                         <td class="p-2">Lorem ipsum dolor sit amet</td>
                         <td class="p-2">*********************************</td>
                         
-                        <td class="p-2">
-                            <button><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="mx-2"><i class="fa-solid fa-eye"></i></button>
-                            <button><i class="fa-solid fa-trash"></i></button>
+                        <td class="p-2 flex items-center gap-6">
+                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
+                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
 
-                    <tr class="border-b-[1px] border-dark-gray">
+                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
                         <td class="flex items-center px-2 py-4">                            
                             <img src="assets/logos/twitter.png" alt="logo" class="w-8 rounded-full mr-4" />
                             <div>
@@ -150,14 +150,14 @@
                         <td class="p-2">Lorem ipsum dolor sit amet</td>
                         <td class="p-2">*********************************</td>
                         
-                        <td class="p-2">
-                            <button><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="mx-2"><i class="fa-solid fa-eye"></i></button>
-                            <button><i class="fa-solid fa-trash"></i></button>
+                        <td class="p-2 flex items-center gap-6">
+                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
+                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
 
-                    <tr class="border-b-[1px] border-dark-gray">
+                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
                         <td class="flex items-center px-2 py-4">                            
                             <img src="assets/logos/youtube.png" alt="logo" class="w-8 rounded-full mr-4" />
                             <div>
@@ -169,14 +169,14 @@
                         <td class="p-2">Lorem ipsum dolor sit amet</td>
                         <td class="p-2">*********************************</td>
                         
-                        <td class="p-2">
-                            <button><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="mx-2"><i class="fa-solid fa-eye"></i></button>
-                            <button><i class="fa-solid fa-trash"></i></button>
+                        <td class="p-2 flex items-center gap-6">
+                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
+                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
 
-                    <tr class="border-b-[1px] border-dark-gray">
+                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
                         <td class="flex items-center px-2 py-4">                            
                             <img src="assets/logos/google.png" alt="logo" class="w-8 rounded-full mr-4" />
                             <div>
@@ -188,10 +188,10 @@
                         <td class="p-2">Lorem ipsum dolor sit amet</td>
                         <td class="p-2">*********************************</td>
                         
-                        <td class="p-2">
-                            <button><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="mx-2"><i class="fa-solid fa-eye"></i></button>
-                            <button><i class="fa-solid fa-trash"></i></button>
+                        <td class="p-2 flex items-center gap-6">
+                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
+                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
 
