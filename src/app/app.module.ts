@@ -15,8 +15,6 @@ import { ItemsComponent } from './views/items/items.component';
 import { RegisterComponent } from './views/auth/register/register.component';
 import { AddItemComponent } from './views/items/add-item/add-item.component';
 import { AddNoteComponent } from './views/notes/add-note/add-note.component';
-import { EditItemComponent } from './views/items/edit-item/edit-item.component';
-import { ViewItemComponent } from './views/items/view-item/view-item.component';
 import { ViewNoteComponent } from './views/notes/view-note/view-note.component';
 import { EditNoteComponent } from './views/notes/edit-note/edit-note.component';
 import { ProfileComponent } from './views/profile/profile.component';
@@ -34,8 +32,6 @@ import { ItemDetailComponent } from './views/items/item-detail/item-detail.compo
     ItemsComponent,
     RegisterComponent,
     AddItemComponent,
-    EditItemComponent,
-    ViewItemComponent,
     AddNoteComponent,
     ViewNoteComponent,
     EditNoteComponent,

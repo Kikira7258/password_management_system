@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ItemService } from 'src/app/services/item.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-item',
@@ -33,9 +34,30 @@ export class AddItemComponent implements OnInit {
   // >> Create a new item <<
   addItem() {
     this.ItemService.createItem(this.data).subscribe(() => {
-      this.router.navigate(['/items']);
-      // window.alert('Item Created')
-    })
+      //Display SweetAlert on Success item creation
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Item added successfully.'
+        
+      });
+
+      // Redirect to the items page after item creation
+      setTimeout(() => {
+        this.router.navigate(['/items']);
+      }, 2000);
+    });
   }
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../../services/item.service';
 import { Items } from '../../models/items';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-items',
@@ -32,7 +33,6 @@ export class ItemsComponent implements OnInit {
     console.log(item)
     item.favorite = !item.favorite;
   }
- 
 
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class ItemsComponent implements OnInit {
   }
 
 
-  // Get All Items
+// Get All Items
   getAllItems() {
 
     // Limit items per page || Pagination
@@ -56,14 +56,34 @@ export class ItemsComponent implements OnInit {
       this.filteredItems = this.items;
     })
   }
+//>>>>>>>>>>>>>>>>>>>>
 
 
-  // Delete All Items
+// Delete All Items
   deleteItem(id: string) {
-    this.itemService.deleteItem(id).subscribe(results => {
-      this.getAllItems()
-    })
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      // confirmButtonColor:
+      // cancelButtonColor:
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.itemService.deleteItem(id).subscribe(() => {
+          Swal.fire(
+            'Deleted!',
+            'Your item has been deleted.',
+            'success'
+          );
+          this.getAllItems()
+        })
+      }
+    }) 
   }
+//>>>>>>>>>>>>>>>>>>>>
 
 
 // Pagination
