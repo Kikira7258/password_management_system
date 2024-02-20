@@ -8,13 +8,13 @@ import { FavoritesComponent } from './views/favorites/favorites.component';
 import { LoginComponent } from './views/auth/login/login.component';
 import { RegisterComponent } from './views/auth/register/register.component';
 import { AddItemComponent } from './views/items/add-item/add-item.component';
-import { EditItemComponent } from './views/items/edit-item/edit-item.component';
 import { AddNoteComponent } from './views/notes/add-note/add-note.component';
 import { EditNoteComponent } from './views/notes/edit-note/edit-note.component';
-import { ViewItemComponent } from './views/items/view-item/view-item.component';
 import { ViewNoteComponent } from './views/notes/view-note/view-note.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { EditProfileComponent } from './views/profile/edit-profile/edit-profile.component';
+import { ItemFormComponent } from './views/items/item-form/item-form.component';
+import { ItemDetailComponent } from './views/items/item-detail/item-detail.component';
 
 
 /* ROUTES */
@@ -22,8 +22,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'items', component: ItemsComponent },
   { path: 'add-item', component: AddItemComponent },
-  { path: 'edit-item/:id', component: EditItemComponent },
-  { path: 'view-item/:id', component: ViewItemComponent },
+  { path: 'item-form', component: ItemFormComponent },
+  { path: 'item-detail/:id', component: ItemDetailComponent },
 
   { path: 'favorites', component: FavoritesComponent },
 

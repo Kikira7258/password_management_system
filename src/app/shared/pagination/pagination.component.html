@@ -1,0 +1,40 @@
+<!-- Pagination buttons -->
+<div class="flex items-center justify-center gap-4 pt-8">
+
+    <!-- Previous buttons -->
+    <button 
+    (click)="previousPage()" 
+    [disabled]="currentPage === 1" 
+    class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-off-white uppercase align-middle transition-all rounded-full select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:opacity-50 disabled:shadow-none"
+    >
+        <!-- Icon for previous page -->
+        <i class="fa-solid fa-chevron-left"></i>
+        Previous
+    </button>
+
+    <!-- Page buttons -->
+    <ng-container *ngFor="let page of pages">
+        <button 
+            (click)="goToPage(page)" 
+            [class.active]="currentPage === page" 
+            class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-full text-center align-middle font-sans text-xs font-medium uppercase text-off-white transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        >
+            <!-- Page number -->
+            <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                {{page}}
+            </span>
+        </button>
+    </ng-container>
+
+
+    <!-- Next button -->
+    <button 
+        (click)="nextPage()" 
+        [disabled]="currentPage === totalPages" 
+        class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-off-white uppercase align-middle transition-all rounded-full select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+    >
+        Next
+        <!-- Icon for next page -->
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+</div>

@@ -1,0 +1,16 @@
+
+/* Delete button */
+.text-red {
+    color: #f44336;
+}
+
+/* Heart button */
+.text-gray {
+    color: #9e9e9e;
+}
+
+/* Search Filter on focus */
+input[type=search]:focus {
+    background-color: white;
+    border-radius: 6px;
+}

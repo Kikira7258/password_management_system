@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 import { NotesComponent } from './views/notes/notes.component';
 import { FavoritesComponent } from './views/favorites/favorites.component';
 import { LoginComponent } from './views/auth/login/login.component';
@@ -18,6 +21,8 @@ import { ViewNoteComponent } from './views/notes/view-note/view-note.component';
 import { EditNoteComponent } from './views/notes/edit-note/edit-note.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { EditProfileComponent } from './views/profile/edit-profile/edit-profile.component';
+import { PaginationComponent } from './shared/pagination/pagination.component';
+import { ItemDetailComponent } from './views/items/item-detail/item-detail.component';
 
 @NgModule({
   declarations: [
@@ -35,11 +40,15 @@ import { EditProfileComponent } from './views/profile/edit-profile/edit-profile.
     ViewNoteComponent,
     EditNoteComponent,
     ProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    PaginationComponent,
+    ItemDetailComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
