@@ -30,8 +30,8 @@ export class ItemsComponent implements OnInit {
 
   // Toggle Favorite function
   toggleFavorite(item: Items) {
-    console.log(item)
     item.favorite = !item.favorite;
+    this.updateFavorite(item)
   }
 
 
@@ -57,6 +57,7 @@ export class ItemsComponent implements OnInit {
     })
   }
 //>>>>>>>>>>>>>>>>>>>>
+
 
 
 // Delete All Items
@@ -86,7 +87,31 @@ export class ItemsComponent implements OnInit {
 //>>>>>>>>>>>>>>>>>>>>
 
 
-// Pagination
+
+// >> Update favorite <<
+updateFavorite(item: Items) {
+  const updatedFavorite = { favorite: item.favorite};
+
+  this.itemService.updateItem(item._id, updatedFavorite).subscribe({
+    next: updateItem => {
+      console.log('Item updated successfully:', updateItem)
+
+      const index = this.items.findIndex(i => i._id === updateItem.data._id);
+      if (index !== -1) {
+        this.items[index].favorite = updateItem.data.favorite;
+      }
+    },
+    error: error => {
+      console.error('Error update item:', error);
+      item.favorite = !item.favorite;
+    }
+  });
+}
+//>>>>>>>>>>>>>>>>>>>>
+
+
+
+// >> Pagination <<
   onPageChange(newPage: number) {
     this.currentPage = newPage;
     this.getAllItems(); // Fetch items for the new page
@@ -99,7 +124,7 @@ export class ItemsComponent implements OnInit {
 
 
 
-// Search Filter
+// >> Search Filter <<
   applySearchFilter() {
     if(this.searchQuery) {
       // Check if the searchQuery is not empty

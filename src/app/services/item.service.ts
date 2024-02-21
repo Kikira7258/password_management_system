@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
 import { APIResponse } from '../models/api-response';
 import { Items } from '../models/items';
@@ -25,8 +25,12 @@ export class ItemService {
   constructor(private http: HttpClient) {}
 
   // get all items
-  getAllItems(): Observable<APIResponse<Items[]>> {
-    return this.http.get<APIResponse<Items[]>>(this.API_URL).pipe(catchError(this._handleHttpErrors([])));
+  getAllItems(favorited? : boolean): Observable<APIResponse<Items[]>> {
+    let params = new HttpParams();
+    if (favorited !== undefined) {
+      params = params.set('favorited', favorited.toString());
+    }
+    return this.http.get<APIResponse<Items[]>>(this.API_URL, { params }).pipe(catchError(this._handleHttpErrors([])));
   }
 
   // get item by id
@@ -40,7 +44,7 @@ export class ItemService {
   }
 
   // update item
-  updateItem(id: string,data: Items): Observable<APIResponse<Items>> {
+  updateItem(id: string,data: Partial<Items>): Observable<APIResponse<Items>> {
     return this.http.put<APIResponse<Items>>(this.API_URL + '/' + id, data).pipe(catchError(this._handleHttpErrors(new Items())))
   }
 
@@ -48,7 +52,7 @@ export class ItemService {
   deleteItem(id: string): Observable<APIResponse<Items>> {
     return this.http.delete<APIResponse<Items>>(this.API_URL + '/' + id).pipe(catchError(this._handleHttpErrors(new Items())));
   }
-
+  
 }
 
 
