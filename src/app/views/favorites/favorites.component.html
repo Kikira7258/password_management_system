@@ -29,7 +29,7 @@
             
 
             <!-- Listings -->
-            <div class="grid grid-cols-3 gap-8 min-h-[26rem]">
+            <div class="grid grid-cols-3 gap-8 min-h-[26rem]" *ngIf="filteredItems.length > 0">
                 <div class="h-min group relative bg-off-white text-dark-gray rounded-md p-4 flex-wrap cursor-pointer hover:bg-white" *ngFor="let item of filteredItems">
                 <!-- <div class="h-min group relative bg-off-white text-dark-gray rounded-md p-4 flex-wrap cursor-pointer hover:bg-white" routerLink="/item-detail/{{item._id}}" *ngFor="let item of filteredItems"> -->
 
@@ -55,6 +55,15 @@
                 </div>
             </div>
             <!-- Listings ends here -->
+
+
+            <!-- No items favorited -->
+            <div *ngIf="filteredItems.length === 0">
+                <div class="">
+                    <h1 class="text-off-white font-bold text-center pb-8">No items favorited</h1>
+                    <img src="assets/backgrounds/no-item.jpg" alt="no-items" class="w-[28rem] mx-auto rounded-md">
+                </div>
+            </div>
 
 
             <!-- Pagination buttons starts here-->            

@@ -19,7 +19,7 @@ export class AddItemComponent implements OnInit {
 
   // >> feilds are initially empty <<
   data: any = {
-    userName: '',
+    username: '',
     password: '',
     website: '',
     note: '',
@@ -39,7 +39,7 @@ export class AddItemComponent implements OnInit {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 2000,
+        timer: 1000,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.onmouseenter = Swal.stopTimer;
@@ -56,7 +56,7 @@ export class AddItemComponent implements OnInit {
       // Redirect to the items page after item creation
       setTimeout(() => {
         this.router.navigate(['/items']);
-      }, 2000);
+      }, 1000);
     });
   }
 

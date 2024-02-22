@@ -46,7 +46,6 @@ export class ItemsComponent implements OnInit {
     // Limit items per page || Pagination
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    console.log(startIndex, endIndex)
 
     this.itemService.getAllItems().subscribe(results => {
       this.items = results.data.slice(startIndex, endIndex);
@@ -94,7 +93,6 @@ updateFavorite(item: Items) {
 
   this.itemService.updateItem(item._id, updatedFavorite).subscribe({
     next: updateItem => {
-      console.log('Item updated successfully:', updateItem)
 
       const index = this.items.findIndex(i => i._id === updateItem.data._id);
       if (index !== -1) {

@@ -95,7 +95,6 @@ updateFavorite(item: Items) {
 
   this.itemService.updateItem(item._id, updatedFavorite).subscribe({
     next: updateItem => {
-      console.log('Item updated successfully:', updateItem)
 
       const index = this.items.findIndex(i => i._id === updateItem.data._id);
       if (index !== -1) {
