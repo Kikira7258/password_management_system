@@ -40,7 +40,7 @@ export class ItemsComponent implements OnInit {
   }
 
 
-// Get All Items
+// >> Get All Items <<
   getAllItems() {
 
     // Limit items per page || Pagination
@@ -59,7 +59,7 @@ export class ItemsComponent implements OnInit {
 
 
 
-// Delete All Items
+// >> Delete Item <<
   deleteItem(id: string) {
     Swal.fire({
       title: 'Are you sure?',

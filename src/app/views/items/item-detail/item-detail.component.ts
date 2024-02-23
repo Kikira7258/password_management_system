@@ -40,7 +40,7 @@ export class ItemDetailComponent implements OnInit {
       this.itemService.updateItem(item._id, item).subscribe({
         next: updateItem => {
 
-          //update the itemDetail with the data from the server response
+          // update the itemDetail with the data from the server response
           this.itemDetail = updateItem.data;
 
           // Log success message to the console

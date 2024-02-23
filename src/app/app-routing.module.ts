@@ -9,12 +9,12 @@ import { LoginComponent } from './views/auth/login/login.component';
 import { RegisterComponent } from './views/auth/register/register.component';
 import { AddItemComponent } from './views/items/add-item/add-item.component';
 import { AddNoteComponent } from './views/notes/add-note/add-note.component';
-import { EditNoteComponent } from './views/notes/edit-note/edit-note.component';
-import { ViewNoteComponent } from './views/notes/view-note/view-note.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { EditProfileComponent } from './views/profile/edit-profile/edit-profile.component';
 import { ItemFormComponent } from './views/items/item-form/item-form.component';
 import { ItemDetailComponent } from './views/items/item-detail/item-detail.component';
+import { NoteFormComponent } from './views/notes/note-form/note-form.component';
+import { NoteDetailComponent } from './views/notes/note-detail/note-detail.component';
 
 
 /* ROUTES */
@@ -29,8 +29,8 @@ const routes: Routes = [
 
   { path: 'notes', component: NotesComponent },
   { path: 'add-note', component: AddNoteComponent },
-  { path: 'edit-note/:id', component: EditNoteComponent },
-  { path: 'view-note/:id', component: ViewNoteComponent },
+  { path: 'note-form/:id', component: NoteFormComponent },
+  { path: 'note-detail/:id', component: NoteDetailComponent},
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

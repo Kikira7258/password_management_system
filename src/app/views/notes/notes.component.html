@@ -8,10 +8,7 @@
             <div class="flex justify-between items-center mb-12">
                <!-- Search bar -->
                <div class="flex w-56 rounded-md items-center bg-off-white text-dark-gray">
-                   <input type="text" class="w-full p-2 bg-transparent outline-none" placeholder="Search..." />
-                   <button class="px-2 border-l-2 border-l-dark-gray">
-                       <i class="fa-solid fa-magnifying-glass"></i>
-                   </button>
+                   <input type="search" class="w-full p-2 bg-transparent outline-none" placeholder="Search..." [(ngModel)]="searchQuery" (input)="applySearchFilter()" />
                </div>
    
                <!-- User profile -->
@@ -33,7 +30,8 @@
                 </span>                
             </div>
 
-           <div>
+            <!-- Listing -->
+           <div class="min-h-[26rem]" *ngIf="filteredNotes.length > 0">
             <table class="bg-off-white w-full">
                 <thead class="text-left bg-dark-gray text-off-white shadow-[0.5px_0.5px_10px] shadow-dark">
                     <th class="p-2">Details</th>
@@ -43,162 +41,48 @@
                 </thead>
                 <tbody>
                     
-                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white cursor-pointer" routerLink="/view-note/:id">
-                        <td class="flex items-center px-2 py-4">                            
-                            <img src="assets/images/logos/yahoo.png" alt="logo" class="w-8 rounded-full mr-4" />
-                            <div>
-                                <p class="font-bold">yahoo</p>
-                                <p class="text-xs">sampleUsername</p>
-                            </div>
+                    <tr class="hover:bg-white cursor-pointer justify-between" *ngFor="let note of filteredNotes" routerLink="/note-detail/{{note._id}}">
+                        <td class="flex items-center px-2 py-4 w-20 bg-dark-gray">                            
+                            <img src="assets/images/logos/yahoo.png" alt="logo" class="w-8 rounded-full mr-4 mx-auto" />
                         </td>
 
-                        <td class="p-2">Lorem ipsum dolor sit amet</td>
-                        <td class="p-2">*********************************</td>
+                        <td class="p-2" name="title">{{note.title}}</td>
+                        <td class="p-2" name="note">{{note.note}}</td>
                         
-                        <td class="p-2 flex items-center gap-6">
-                            <button class="hover:text-warning" routerLink="/edit-note/:id"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="hover:text-success" routerLink="/view-note/:id"><i class="fa-solid fa-eye"></i></button>
-                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
+                        <td class="p-2">
+                            <button (click)="deleteNote(note._id)" class="hover:bg-red hover:text-white h-8 w-8 rounded-full shadow-sm shadow-dark">                   
+                                <span>
+                                    <i class="fa-solid fa-x"></i>                             
+                                </span>             
+                            </button>
                         </td>
                     </tr>
-
-                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
-                        <td class="flex items-center px-2 py-4">                            
-                            <img src="assets/images/logos/facebook.png" alt="logo" class="w-8 rounded-full mr-4" />
-                            <div>
-                                <p class="font-bold">facebook</p>
-                                <p class="text-xs">sampleUsername</p>
-                            </div>
-                        </td>
-
-                        <td class="p-2">Lorem ipsum dolor sit amet</td>
-                        <td class="p-2">*********************************</td>
-                        
-                        <td class="p-2 flex items-center gap-6">
-                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
-                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
-                        <td class="flex items-center px-2 py-4">                            
-                            <img src="assets/images/logos/instagram.png" alt="logo" class="w-8 rounded-full mr-4" />
-                            <div>
-                                <p class="font-bold">Instagram</p>
-                                <p class="text-xs">sampleUsername</p>
-                            </div>
-                        </td>
-
-                        <td class="p-2">Lorem ipsum dolor sit amet</td>
-                        <td class="p-2">*********************************</td>
-                        
-                        <td class="p-2 flex items-center gap-6">
-                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
-                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
-                        <td class="flex items-center px-2 py-4">                            
-                            <img src="assets/images/logos/linkedin.png" alt="logo" class="w-8 rounded-full mr-4" />
-                            <div>
-                                <p class="font-bold">Linkedin</p>
-                                <p class="text-xs">sampleUsername</p>
-                            </div>
-                        </td>
-
-                        <td class="p-2">Lorem ipsum dolor sit amet</td>
-                        <td class="p-2">*********************************</td>
-                        
-                        <td class="p-2 flex items-center gap-6">
-                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
-                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
-                        <td class="flex items-center px-2 py-4">                            
-                            <img src="assets/images/logos/titok.png" alt="logo" class="w-8 rounded-full mr-4" />
-                            <div>
-                                <p class="font-bold">Titok</p>
-                                <p class="text-xs">sampleUsername</p>
-                            </div>
-                        </td>
-
-                        <td class="p-2">Lorem ipsum dolor sit amet</td>
-                        <td class="p-2">*********************************</td>
-                        
-                        <td class="p-2 flex items-center gap-6">
-                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
-                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
-                        <td class="flex items-center px-2 py-4">                            
-                            <img src="assets/images/logos/twitter.png" alt="logo" class="w-8 rounded-full mr-4" />
-                            <div>
-                                <p class="font-bold">Twitter</p>
-                                <p class="text-xs">sampleUsername</p>
-                            </div>
-                        </td>
-
-                        <td class="p-2">Lorem ipsum dolor sit amet</td>
-                        <td class="p-2">*********************************</td>
-                        
-                        <td class="p-2 flex items-center gap-6">
-                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
-                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
-                        <td class="flex items-center px-2 py-4">                            
-                            <img src="assets/images/logos/youtube.png" alt="logo" class="w-8 rounded-full mr-4" />
-                            <div>
-                                <p class="font-bold">Youtube</p>
-                                <p class="text-xs">sampleUsername</p>
-                            </div>
-                        </td>
-
-                        <td class="p-2">Lorem ipsum dolor sit amet</td>
-                        <td class="p-2">*********************************</td>
-                        
-                        <td class="p-2 flex items-center gap-6">
-                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
-                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr class="border-b-[1px] border-dark-gray border-opacity-20 hover:bg-white">
-                        <td class="flex items-center px-2 py-4">                            
-                            <img src="assets/images/logos/google.png" alt="logo" class="w-8 rounded-full mr-4" />
-                            <div>
-                                <p class="font-bold">Google</p>
-                                <p class="text-xs">sampleUsername</p>
-                            </div>
-                        </td>
-
-                        <td class="p-2">Lorem ipsum dolor sit amet</td>
-                        <td class="p-2">*********************************</td>
-                        
-                        <td class="p-2 flex items-center gap-6">
-                            <button class="hover:text-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="hover:text-success"><i class="fa-solid fa-eye"></i></button>
-                            <button class="hover:text-error"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-
-                   
+                                     
                 </tbody>
             </table>
            </div>
+
+
+            <!-- No items -->
+            <div *ngIf="filteredNotes.length === 0">
+                <div class="">
+                    <h1 class="text-off-white font-bold text-center pb-8">No items favorited</h1>
+                    <img src="assets/backgrounds/no-item.jpg" alt="no-items" class="w-[28rem] mx-auto rounded-md">
+                </div>
+            </div>
+
+
+            <!-- Pagination buttons starts here-->            
+            <div class="relative w-full">
+                <app-pagination
+                    [currentPage]="currentPage"
+                    [totalPages]="calculateTotalPages()"
+                    (pageChange)="onPageChange($event)"
+                    class="bottom-0 left-0 right-0"
+                    >
+                </app-pagination>
+            </div>
+            <!-- Pagination buttons ends here-->
 
 
 

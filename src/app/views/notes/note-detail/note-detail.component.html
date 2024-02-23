@@ -5,18 +5,18 @@
         <div class="m-6">   
             <div class="flex justify-between items-center text-off-white">
                 <p class="font-bold mb-12">View Note</p>                  
-                <button routerLink="/edit-note/:id" class="hover:opacity-70"><span class="mr-2"><i class="fa-solid fa-pen-to-square"></i></span>Edit</button>
+                <button routerLink="/note-form/:id" class="hover:opacity-70"><span class="mr-2"><i class="fa-solid fa-pen-to-square"></i></span>Edit</button>
             </div>         
     
       
             <form class="w-full">
                 <div class="flex flex-col mt-8 mb-12 text-off-white">
                     <label class="text-xs" for="title">Title</label>
-                    <input class="w-full border-b-[1px] text-white border-off-white bg-transparent outline-none" type="text" name="title" required="" />
+                    <input [(ngModel)]="noteDetail.title" class="w-full border-b-[1px] text-white border-off-white bg-transparent outline-none" type="text" name="title" required="" />
                 </div>
                 <div class="flex flex-col mt-8 mb-4">
                     <label class="text-xs text-off-white" for="note">Note</label>
-                    <textarea class="text-dark p-4 w-full b border-b-[1px] bg-off-white opacity-50 rounded-md outline-none " rows="5"></textarea>
+                    <textarea [(ngModel)]="noteDetail.note" class="text-dark p-4 w-full b border-b-[1px] bg-off-white rounded-md outline-none" name="note" rows="5"></textarea>
                 </div>
 
                 <div class="flex justify-end items-center">
@@ -25,7 +25,7 @@
                         <label class="text-off-white" for="favorite">Favorite</label>
                     </div> -->
                     <div class="text-dark flex gap-4 justify-end">
-                        <button class="bg-cyan w-20 font-bold rounded-md shadow-md py-[4px] hover:opacity-75">Save</button>
+                        <button class="bg-cyan w-20 font-bold rounded-md shadow-md py-[4px] hover:opacity-75" (click)="updateNote(noteDetail)">Save</button>
                         <button class="bg-red w-20 font-bold rounded-md shadow-md py-[4px] hover:opacity-75" routerLink="/notes">Cancel</button>
                     </div>
                 </div>
