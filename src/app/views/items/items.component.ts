@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../../services/item.service';
 import { Items } from '../../models/items';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-items',
@@ -26,7 +27,7 @@ export class ItemsComponent implements OnInit {
 
 // >>>>>>>>>>>>>>>>>>>>
 
-  constructor(private itemService: ItemService){}
+  constructor(private itemService: ItemService, private router: Router){}
 
   // Toggle Favorite function
   toggleFavorite(item: Items) {
@@ -78,6 +79,11 @@ export class ItemsComponent implements OnInit {
             'Your item has been deleted.',
             'success'
           );
+          
+          setTimeout(() => {
+            this.router.navigate(['/items']);
+          }, 1000);
+
           this.getAllItems()
         })
       }

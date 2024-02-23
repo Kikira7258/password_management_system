@@ -39,18 +39,26 @@
                     <th class="p-2">Notes</th>
                     <th class="p-2">Action</th>
                 </thead>
-                <tbody>
-                    
-                    <tr class="hover:bg-white cursor-pointer justify-between" *ngFor="let note of filteredNotes" routerLink="/note-detail/{{note._id}}">
+                <tbody>                    
+                    <tr class="hover:bg-white cursor-pointer" *ngFor="let note of filteredNotes" routerLink="/note-detail/{{note._id}}">
                         <td class="flex items-center px-2 py-4 w-20 bg-dark-gray">                            
                             <img src="assets/images/logos/yahoo.png" alt="logo" class="w-8 rounded-full mr-4 mx-auto" />
                         </td>
 
-                        <td class="p-2" name="title">{{note.title}}</td>
-                        <td class="p-2" name="note">{{note.note}}</td>
+                        <td class="p-2 w-1/4" name="title">
+                            <p class="w-1/4 text-ellipsis overflow-hidden whitespace-nowrap">
+                                {{note.title}}
+                            </p>
+                        </td>
+
+                        <td class="p-2 w-1/4" name="note">
+                            <p class="w-1/4 text-ellipsis overflow-hidden whitespace-nowrap">
+                                {{note.note}}
+                            </p>
+                        </td>
                         
-                        <td class="p-2">
-                            <button (click)="deleteNote(note._id)" class="hover:bg-red hover:text-white h-8 w-8 rounded-full shadow-sm shadow-dark">                   
+                        <td class="p-2 w-20 bg-dark-gray">
+                            <button (click)="deleteNote(note._id)" class=" hover:bg-red hover:text-white h-8 w-8 rounded-full shadow-sm shadow-dark">                   
                                 <span>
                                     <i class="fa-solid fa-x"></i>                             
                                 </span>             

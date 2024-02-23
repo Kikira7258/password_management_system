@@ -27,4 +27,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
-Items-form
+## TO-DO
+# Add LoadState for listing (to prevent the 'no item/note image from showing when there are items/notes)
+# Fix Pagination visibility when only 1 page (Pagination should not be shown when there are one 1 page (Add a check for the last item, then relog the page if it's zero))
+# Fix routing when favorited or deleting (Item/note with be routed to the detail page when clicked, then the function would be triggered)
+# List Item notes in notes (Add Item's note to the note listing)
+# Add Authentication and authorization

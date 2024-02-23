@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NoteService } from 'src/app/services/note.service';
 import { Notes } from 'src/app/models/notes';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notes',
@@ -26,7 +27,7 @@ export class NotesComponent implements OnInit {
     
 // >>>>>>>>>>>>>>>>>>>>
 
-  constructor(private noteService: NoteService) {}
+  constructor(private noteService: NoteService, private router: Router) {}
 
   ngOnInit(): void {
       this.getAllNotes();
@@ -71,6 +72,11 @@ export class NotesComponent implements OnInit {
             'Your item has been deleted.',
             'success'
           );
+
+          setTimeout(() => {
+            this.router.navigate(['/notes']);
+          }, 1000);
+
           this.getAllNotes()
         })
       }
