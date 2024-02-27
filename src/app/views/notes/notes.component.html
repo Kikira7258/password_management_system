@@ -34,35 +34,37 @@
            <div class="min-h-[26rem]" *ngIf="filteredNotes.length > 0">
             <table class="bg-off-white w-full">
                 <thead class="text-left bg-dark-gray text-off-white shadow-[0.5px_0.5px_10px] shadow-dark">
-                    <th class="p-2">Details</th>
-                    <th class="p-2">Title</th>
+                    <!-- <th class="p-2 w-20 text-center">Details</th> -->
+                    <th class="p-2 px-8 w-48">Title</th>
                     <th class="p-2">Notes</th>
-                    <th class="p-2">Action</th>
+                    <th class="p-2 w-20 text-center">Action</th>
                 </thead>
                 <tbody>                    
                     <tr class="hover:bg-white cursor-pointer" *ngFor="let note of filteredNotes" routerLink="/note-detail/{{note._id}}">
-                        <td class="flex items-center px-2 py-4 w-20 bg-dark-gray">                            
-                            <img src="assets/images/logos/yahoo.png" alt="logo" class="w-8 rounded-full mr-4 mx-auto" />
-                        </td>
+                        <!-- <td class="items-center px-2 py-4 w-20">                            
+                            <img src="assets/images/logos/yahoo.png" alt="logo" class="w-8 rounded-full mx-auto" />
+                        </td> -->
 
-                        <td class="p-2 w-1/4" name="title">
-                            <p class="w-1/4 text-ellipsis overflow-hidden whitespace-nowrap">
+                        <td class="p-2 px-8 w-48" name="title">
+                            <p class="w-48 text-ellipsis overflow-hidden whitespace-nowrap">
                                 {{note.title}}
                             </p>
                         </td>
 
-                        <td class="p-2 w-1/4" name="note">
-                            <p class="w-1/4 text-ellipsis overflow-hidden whitespace-nowrap">
+                        <td class="p-2 max-w-full" name="note">
+                            <p class="max-w-screen-sm text-ellipsis overflow-hidden whitespace-nowrap">
                                 {{note.note}}
                             </p>
                         </td>
                         
-                        <td class="p-2 w-20 bg-dark-gray">
-                            <button (click)="deleteNote(note._id)" class=" hover:bg-red hover:text-white h-8 w-8 rounded-full shadow-sm shadow-dark">                   
-                                <span>
-                                    <i class="fa-solid fa-x"></i>                             
-                                </span>             
-                            </button>
+                        <td class="p-2 w-20">
+                            <div class="max-w-max mx-auto">
+                                <button (click)="deleteNote(note._id)" class=" hover:bg-red text-red bg-dark-gray hover:text-white h-8 w-8 rounded-full shadow-sm shadow-dark items-center">   
+                                    <span class="max-w-max align-middle">
+                                        <i class="fa-solid fa-x"></i>
+                                    </span>   
+                                </button>
+                            </div>
                         </td>
                     </tr>
                                      
@@ -71,13 +73,26 @@
            </div>
 
 
-            <!-- No items -->
-            <div *ngIf="filteredNotes.length === 0">
-                <div class="">
-                    <h1 class="text-off-white font-bold text-center pb-8">No items favorited</h1>
-                    <img src="assets/backgrounds/no-item.jpg" alt="no-items" class="w-[28rem] mx-auto rounded-md">
+           <!-- >>>>>>>>>> No item section <<<<<<<<<< -->
+           <div *ngIf="loading" class="loader">
+
+                <!-- No items -->
+                <div *ngIf="!loading">
+
+                <!-- Content when not loading -->
+                
+                    <!--No favorited item -->
+                    <div *ngIf="filteredNotes.length === 0">
+                        <div class="">
+                            <h1 class="text-off-white font-bold text-center pb-8">No items favorited</h1>
+                            <img src="assets/backgrounds/no-item.jpg" alt="no-items" class="w-[28rem] mx-auto rounded-md">
+                        </div>
+                    </div>
+                <!-- ----------------------- -->
+
                 </div>
             </div>
+            <!-- >>>>>>>>>><<<<<<<<<< -->
 
 
             <!-- Pagination buttons starts here-->            

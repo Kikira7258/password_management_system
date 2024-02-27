@@ -57,13 +57,24 @@
             <!-- Listings ends here -->
 
 
-            <!-- No items favorited -->
-            <div *ngIf="filteredItems.length === 0">
-                <div class="">
-                    <h1 class="text-off-white font-bold text-center pb-8">No items favorited</h1>
-                    <img src="assets/backgrounds/no-item.jpg" alt="no-items" class="w-[28rem] mx-auto rounded-md">
+            <!-- >>>>>>>>>> No item section <<<<<<<<<< -->
+            <div *ngIf="loading" class="loader">
+                <!-- No items -->
+                <div *ngIf="!loading">
+
+                <!-- Content when not loading -->
+            
+                    <!--No favorited item -->
+                    <div *ngIf="filteredItems.length === 0">
+                        <div class="">
+                            <h1 class="text-off-white font-bold text-center pb-8">No items favorited</h1>
+                            <img src="assets/backgrounds/no-item.jpg" alt="no-items" class="w-[28rem] mx-auto rounded-md">
+                        </div>
+                    </div>
+                <!-- ----------------------- -->
                 </div>
             </div>
+        <!-- >>>>>>>>>><<<<<<<<<< -->
 
 
             <!-- Pagination buttons starts here-->            

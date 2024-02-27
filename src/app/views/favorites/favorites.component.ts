@@ -24,6 +24,9 @@ export class FavoritesComponent implements OnInit {
   currentPage = 1; // Current Page
   itemsPerPage = 6; // Number of items per page
 
+  // Loader
+  loading: boolean = false
+
 // >>>>>>>>>>>>>>>>>>>>
 
 constructor(private itemService: ItemService){}
@@ -38,18 +41,27 @@ constructor(private itemService: ItemService){}
 
  // >> Get all favorited items <<
   getAllFavoritedItems() {
-      // Limit items per page || Pagination
-  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-  const endIndex = startIndex + this.itemsPerPage;
 
-    this.itemService.getAllItems(true).subscribe(results => {
-      this.items = results.data.slice(startIndex, endIndex);
-      this.totalItems = results.data.length;
+    this.loading = true;
+     try {
+       // Limit items per page || Pagination
+   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+   const endIndex = startIndex + this.itemsPerPage;
+ 
+     this.itemService.getAllItems(true).subscribe(results => {
+       this.items = results.data.slice(startIndex, endIndex);
+       this.totalItems = results.data.length;
+ 
+ 
+       // Filter only favorited items
+       this.filteredItems = this.items.filter(item => item.favorite);
+     });
 
-
-      // Filter only favorited items
-      this.filteredItems = this.items.filter(item => item.favorite);
-    });
+     } catch (error) {
+      console.error('Error fetching favorites', error)
+     } finally {
+      this.loading = false;
+     }
   }
 
 //>>>>>>>>>>>>>>>>>>>>

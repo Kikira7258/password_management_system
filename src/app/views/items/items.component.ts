@@ -25,6 +25,9 @@ export class ItemsComponent implements OnInit {
   currentPage = 1; // Current Page
   itemsPerPage = 6; // Number of items per page
 
+  // Loader
+  loading: boolean = false
+
 // >>>>>>>>>>>>>>>>>>>>
 
   constructor(private itemService: ItemService, private router: Router){}
@@ -43,18 +46,26 @@ export class ItemsComponent implements OnInit {
 
 // >> Get All Items <<
   getAllItems() {
+    this.loading = true
 
-    // Limit items per page || Pagination
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
+    try {
+      // Limit items per page || Pagination
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+  
+      this.itemService.getAllItems().subscribe(results => {
+        this.items = results.data.slice(startIndex, endIndex);
+        this.totalItems = results.data.length;
+  
+        // Search Filter
+        this.filteredItems = this.items;
+      })
+    } catch (error) {
+      console.error('Error fetching items', error)
+    } finally {
+      this.loading = false;
+    }
 
-    this.itemService.getAllItems().subscribe(results => {
-      this.items = results.data.slice(startIndex, endIndex);
-      this.totalItems = results.data.length;
-
-      // Search Filter
-      this.filteredItems = this.items;
-    })
   }
 //>>>>>>>>>>>>>>>>>>>>
 

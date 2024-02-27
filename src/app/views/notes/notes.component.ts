@@ -24,6 +24,9 @@ export class NotesComponent implements OnInit {
     totalNotes: number = 0;
     currentPage = 1; // Current Page
     notesPerPage = 5; // Number of items per page
+
+    // Loader
+    loading: boolean = false
     
 // >>>>>>>>>>>>>>>>>>>>
 
@@ -36,18 +39,26 @@ export class NotesComponent implements OnInit {
 
 // >> Get All Notes <<
   getAllNotes() {
+    // Set loading state to true
+    this.loading = true;
 
-    // Limit notes per page || Pagination
-    const startIndex = (this.currentPage - 1) * this.notesPerPage;
-    const endIndex = startIndex + this.notesPerPage;
-
-    this.noteService.getAllNotes().subscribe(results => {
-      this.notes = results.data.slice(startIndex, endIndex);
-      this.totalNotes = results.data.length;
-
-      // Search Filter
-      this.filteredNotes = this.notes;
-    })
+    try {
+      // Limit notes per page || Pagination
+      const startIndex = (this.currentPage - 1) * this.notesPerPage;
+      const endIndex = startIndex + this.notesPerPage;
+  
+      this.noteService.getAllNotes().subscribe(results => {
+        this.notes = results.data.slice(startIndex, endIndex);
+        this.totalNotes = results.data.length;
+  
+        // Search Filter
+        this.filteredNotes = this.notes;
+      });
+    } catch (error) {
+      console.error('Error fetching notes: error')
+    } finally {
+      this.loading = false;
+    }
   }
 // >>>>>>>>>>>>>>>>>>>>
 
