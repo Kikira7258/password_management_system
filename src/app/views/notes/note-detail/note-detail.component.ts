@@ -20,7 +20,9 @@ export class NoteDetailComponent implements OnInit {
     _id: '',
     title: '',
     note: '',
-    timeStamp: ''
+    timeStamp: '',
+    createdAt: new Date,
+    updatedAt: new Date
   }
 
   constructor(private route: ActivatedRoute, private router: Router, private noteService: NoteService) {}

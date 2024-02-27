@@ -22,7 +22,9 @@ export class ItemDetailComponent implements OnInit {
       website: '',
       note: '',
       favorite: false,
-      timeStamp: ''
+      timeStamp: '',
+      createdAt: new Date,
+      updatedAt: new Date
     };
 
     constructor(private route: ActivatedRoute, private router: Router, private itemService: ItemService) { }

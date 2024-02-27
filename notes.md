@@ -36,3 +36,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # List Item notes in notes (Add Item's note to the note listing)
 
 # Add Authentication and authorization
+
+# validation directive
+
+# validation
