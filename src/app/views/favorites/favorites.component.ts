@@ -32,7 +32,10 @@ export class FavoritesComponent implements OnInit {
 constructor(private itemService: ItemService){}
 
   // Toggle Favorite function
-  toggleFavorite(item: Items) {
+  toggleFavorite(event: Event, item: Items) {
+      // Stop the event from propagating
+      event.stopPropagation();
+
     item.favorite = !item.favorite;
     this.updateFavorite(item)
   }
@@ -74,7 +77,10 @@ ngOnInit(): void {
 
 
 // Delete All Items
-deleteItem(id: string) {
+deleteItem(event: Event, id: string) {
+  // Stop the event from propagating
+  event.stopPropagation();
+
   Swal.fire({
     title: 'Are you sure?',
     text: 'You won\'t be able to revert this!',

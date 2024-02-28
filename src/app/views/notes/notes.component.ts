@@ -23,7 +23,7 @@ export class NotesComponent implements OnInit {
     // Pagination
     totalNotes: number = 0;
     currentPage = 1; // Current Page
-    notesPerPage = 5; // Number of items per page
+    notesPerPage = 8; // Number of items per page
 
     // Loader
     loading: boolean = false
@@ -65,7 +65,10 @@ export class NotesComponent implements OnInit {
 
 
 // >> Delete Note <<
-  deleteNote(id: string) {
+  deleteNote(event: Event, id: string) {
+      // Stop the event from propagating
+      event.stopPropagation();
+
     Swal.fire({
       title: 'Are you sure?',
       text: 'You won\'t be able to revert this!',

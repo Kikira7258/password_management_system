@@ -33,7 +33,10 @@ export class ItemsComponent implements OnInit {
   constructor(private itemService: ItemService, private router: Router){}
 
   // Toggle Favorite function
-  toggleFavorite(item: Items) {
+  toggleFavorite(event: Event, item: Items) {
+    // Stop the event from propagating
+    event.stopPropagation();
+
     item.favorite = !item.favorite;
     this.updateFavorite(item)
   }
@@ -72,7 +75,10 @@ export class ItemsComponent implements OnInit {
 
 
 // >> Delete Item <<
-  deleteItem(id: string) {
+  deleteItem(event: Event, id: string) {
+    // Stop the event from propagating
+    event.stopPropagation();
+
     Swal.fire({
       title: 'Are you sure?',
       text: 'You won\'t be able to revert this!',

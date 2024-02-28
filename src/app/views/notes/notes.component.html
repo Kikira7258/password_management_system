@@ -30,47 +30,34 @@
                 </span>                
             </div>
 
-            <!-- Listing -->
-           <div class="min-h-[26rem]" *ngIf="filteredNotes.length > 0">
-            <table class="bg-off-white w-full">
-                <thead class="text-left bg-dark-gray text-off-white shadow-[0.5px_0.5px_10px] shadow-dark">
-                    <!-- <th class="p-2 w-20 text-center">Details</th> -->
-                    <th class="p-2 px-8 w-48">Title</th>
-                    <th class="p-2">Notes</th>
-                    <th class="p-2 w-20 text-center">Action</th>
-                </thead>
-                <tbody>                    
-                    <tr class="hover:bg-white cursor-pointer" *ngFor="let note of filteredNotes" routerLink="/note-detail/{{note._id}}">
-                        <!-- <td class="items-center px-2 py-4 w-20">                            
-                            <img src="assets/images/logos/yahoo.png" alt="logo" class="w-8 rounded-full mx-auto" />
-                        </td> -->
+            <!-- Listing -->        
 
-                        <td class="p-2 px-8 w-48" name="title">
-                            <p class="w-48 text-ellipsis overflow-hidden whitespace-nowrap">
-                                {{note.title}}
-                            </p>
-                        </td>
-
-                        <td class="p-2 max-w-full" name="note">
-                            <p class="max-w-screen-sm text-ellipsis overflow-hidden whitespace-nowrap">
-                                {{note.note}}
-                            </p>
-                        </td>
-                        
-                        <td class="p-2 w-20">
-                            <div class="max-w-max mx-auto">
-                                <button (click)="deleteNote(note._id)" class=" hover:bg-red text-red bg-dark-gray hover:text-white h-8 w-8 rounded-full shadow-sm shadow-dark items-center">   
-                                    <span class="max-w-max align-middle">
-                                        <i class="fa-solid fa-x"></i>
-                                    </span>   
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                                     
-                </tbody>
-            </table>
-           </div>
+            <div class="min-h-[35rem]">
+                <div class="grid grid-cols-2 gap-8" *ngIf="filteredNotes.length > 0">
+                    <div class="bg-off-white rounded-md flex justify-between items-center cursor-pointer p-4 h-[7.25rem] overflow-hidden" *ngFor="let note of filteredNotes" routerLink="/note-detail/{{note._id}}">
+     
+                         <div class="flex items-center">
+                             <div class="mr-8">
+                                 <img src="assets/images/logos/yahoo.png" alt="logo" class="w-8 rounded-full mx-auto" />
+                             </div>
+                             <div class="overflow-hidden text-ellipsis">
+                                 <p class="text-xs text-dark-gray font-thin">Time</p>
+                                 <p class="text-dark text-xl text-ellipsis overflow-hidden whitespace-nowrap w-56 font-bold mt-4">{{note.title}}</p>
+                                 <p class="text-dark-gray text-ellipsis overflow-hidden whitespace-nowrap w-[30rem]">{{note.note}}</p>
+                             </div>
+                         </div>
+     
+                         <div class="">
+                             <button (click)="deleteNote($event, note._id)" class=" hover:bg-red text-red bg-dark-gray hover:text-white h-8 w-8 rounded-full shadow-sm shadow-dark items-center">   
+                                 <span class="max-w-max align-middle">
+                                     <i class="fa-solid fa-x"></i>
+                                 </span>   
+                             </button>
+                         </div>
+     
+                    </div>
+                </div>
+            </div>
 
 
            <!-- >>>>>>>>>> No item section <<<<<<<<<< -->
