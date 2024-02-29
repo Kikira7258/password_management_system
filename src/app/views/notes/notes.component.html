@@ -34,14 +34,14 @@
 
             <div class="min-h-[35rem]">
                 <div class="grid grid-cols-2 gap-8" *ngIf="filteredNotes.length > 0">
-                    <div class="bg-off-white rounded-md flex justify-between items-center cursor-pointer p-4 h-[7.25rem] overflow-hidden" *ngFor="let note of filteredNotes" routerLink="/note-detail/{{note._id}}">
+                    <div class="bg-off-white rounded-md flex justify-between items-center cursor-pointer p-4 h-[7.25rem] overflow-hidden" *ngFor="let note of filteredNotes" routerLink="{{note.item ? '/item-detail/' + note.item._id : '/note-detail/' + note._id}}">
      
                          <div class="flex items-center">
-                             <div class="mr-8">
+                             <div class="mr-8" *ngIf="note.item">
                                  <img src="assets/images/logos/yahoo.png" alt="logo" class="w-8 rounded-full mx-auto" />
                              </div>
                              <div class="overflow-hidden text-ellipsis">
-                                 <p class="text-xs text-dark-gray font-thin">Time</p>
+                                 <p class="text-xs text-dark-gray font-thin">{{note.createdAt | date: 'MMM d y, h:mm:ss a'}}</p>
                                  <p class="text-dark text-xl text-ellipsis overflow-hidden whitespace-nowrap w-56 font-bold mt-4">{{note.title}}</p>
                                  <p class="text-dark-gray text-ellipsis overflow-hidden whitespace-nowrap w-[30rem]">{{note.note}}</p>
                              </div>

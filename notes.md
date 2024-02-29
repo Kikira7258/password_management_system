@@ -31,7 +31,13 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # Fix Pagination visibility when only 1 page (Pagination should not be shown when there are one 1 page (Add a check for the last item, then relog the page if it's zero))
 
-# List Item notes in notes (Add Item's note to the note listing)
+# Make logo correspond with website
+
+# If Deleting Item note, then give a warning that the item will also be deleted
+
+# Responsive nav bar
+
+# responsiveness
 
 # Add Authentication and authorization
 
