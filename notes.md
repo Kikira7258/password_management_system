@@ -35,12 +35,70 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # If Deleting Item note, then give a warning that the item will also be deleted
 
-# Responsive nav bar
-
-# responsiveness
-
 # Add Authentication and authorization
 
 # validation directive
 
 # validation
+
+
+
+
+
+
+
+
+
+
+
+[Dashboard HTML]
+<aside class="h-screen bg-dark-gray w-[200px] fixed p-8">
+    <div class="mb-8 border-b-[1px] border-opacity-30 border-off-white w-full">
+        <img src="assets/images/logos/safe-secret.png" alt="logo" class="w-24 mb-2" />
+    </div>
+
+
+    <div class="h-[80%] flex flex-col justify-between text-white">
+
+        <ul class="">
+            <li class="hover:text-off-white">
+                <a routerLink="/items" routerLinkActive="active" class="group mb-4 flex justify-between">
+                    <div class="">
+                        <span  class="mr-2">
+                            <i class="fa-solid fa-shield"></i>
+                        </span>
+                        Items
+                    </div>
+                    <span class="badge group-[.active]:bg-cyan">10</span>
+                </a>
+            </li>
+            
+            <li class="hover:text-off-white">
+                <a routerLink="/favorites" routerLinkActive="active" class="group mb-4 flex justify-between">
+                    <div>
+                        <span  class="mr-2">
+                            <i class="fa-solid fa-heart"></i>
+                        </span>                    
+                        Favorites
+                    </div>
+                    <span class="badge group-[.active]:bg-cyan">10</span>
+                </a>
+            </li>
+    
+            <li class="hover:text-off-white">
+                <a routerLink="/notes" routerLinkActive="active" class="group flex justify-between">
+                    <div>
+                        <span  class="mr-2">
+                            <i class="fa-solid fa-sticky-note"></i>
+                        </span>
+                        Notes
+                    </div>
+                    <span class="badge group-[.active]:bg-cyan">10</span>
+                </a>            
+            </li>
+        </ul>
+
+        <a routerLink="/login"><span class="mr-2"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>Logout</a>
+
+    </div>
+</aside>

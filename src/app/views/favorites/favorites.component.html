@@ -1,7 +1,7 @@
 <div class="flex">
     <app-dashboard></app-dashboard>
 
-    <div class="bg-dark w-full min-h-screen ml-[200px]">
+    <div class="bg-dark w-full min-h-screen">
         <div class="m-6">
 
             <!-- Header starts here-->
@@ -14,7 +14,7 @@
                 <!-- User profile -->
                 <div class="flex items-center cursor-pointer" routerLink="/profile">
                     <img src="assets/temps/portrait.png" alt="logo" class="w-12 mb-2 mr-4 rounded-full" />
-                    <div class="text-xs">
+                    <div class="text-xs hidden sm:block">
                         <p class="font-bold text-white">Moya James</p>
                         <p class="text-off-white">sampleEmail@gmail.com</p>
                     </div>
@@ -29,7 +29,7 @@
             
 
             <!-- Listings -->
-            <div class="grid grid-cols-3 gap-8 min-h-[26rem]" *ngIf="filteredItems.length > 0">                
+            <div class="grid gap-8 min-h-[26rem] grid-cols-1 md:grid-cols-2 lg:grid-cols-3" *ngIf="filteredItems.length > 0">                
                 <div class="h-min group relative bg-off-white text-dark-gray rounded-md p-4 flex-wrap cursor-pointer hover:bg-white" routerLink="/item-detail/{{item._id}}" *ngFor="let item of filteredItems">
 
                     <!-- Delete button -->

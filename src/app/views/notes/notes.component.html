@@ -1,7 +1,7 @@
 <div class="flex">
     <app-dashboard></app-dashboard>
 
-    <div class="bg-dark w-full min-h-screen ml-[200px]">
+    <div class="bg-dark w-full min-h-screen">
         <div class="m-6">
 
             <!-- Header starts here-->
@@ -14,7 +14,7 @@
                <!-- User profile -->
                <div class="flex items-center">
                 <img src="assets/temps/portrait.png" alt="logo" class="w-12 mb-2 mr-4 rounded-full" />
-                   <div class="text-xs">
+                   <div class="text-xs hidden sm:block">
                        <p class="font-bold text-white">Moya James</p>
                        <p class="text-off-white">sampleEmail@gmail.com</p>
                    </div>
@@ -33,16 +33,21 @@
             <!-- Listing -->        
 
             <div class="min-h-[35rem]">
-                <div class="grid grid-cols-2 gap-8" *ngIf="filteredNotes.length > 0">
-                    <div class="bg-off-white rounded-md flex justify-between items-center cursor-pointer p-4 h-[7.25rem] overflow-hidden" *ngFor="let note of filteredNotes" routerLink="{{note.item ? '/item-detail/' + note.item._id : '/note-detail/' + note._id}}">
+                <div class="grid grid-cols-1 gap-8 md:grid-cols-2" *ngIf="filteredNotes.length > 0">
+                    <div class="bg-off-white rounded-md flex justify-between items-center cursor-pointer p-4 h-[7.25rem] overflow-hidden" *ngFor="let note of filteredNotes" routerLink="{{note.item ? '/item-detail/' + note.item._id : '/note-detail/' + note._id}}"> <!-- If note has an item, go to item-detail, else go to note-detail -->
      
                          <div class="flex items-center">
+
+                            <!-- only show logo if the note is linked to an item -->
                              <div class="mr-8" *ngIf="note.item">
                                  <img src="assets/images/logos/yahoo.png" alt="logo" class="w-8 rounded-full mx-auto" />
                              </div>
+                            <!--- ---------------------------------------- -->
+
                              <div class="overflow-hidden text-ellipsis">
-                                 <p class="text-xs text-dark-gray font-thin">{{note.createdAt | date: 'MMM d y, h:mm:ss a'}}</p>
-                                 <p class="text-dark text-xl text-ellipsis overflow-hidden whitespace-nowrap w-56 font-bold mt-4">{{note.title}}</p>
+                                 <p class="text-xs text-dark-gray font-thin mb-4">{{note.createdAt | date: 'MMM d y, h:mm:ss a'}}</p>
+                                 <p class="text-dark text-xl text-ellipsis overflow-hidden whitespace-nowrap w-56 font-bold">{{note.title}}</p>
+                                 <p class="text-dark text-xl text-ellipsis overflow-hidden whitespace-nowrap w-56 font-bold">{{note.item?.username}}</p>
                                  <p class="text-dark-gray text-ellipsis overflow-hidden whitespace-nowrap w-[30rem]">{{note.note}}</p>
                              </div>
                          </div>

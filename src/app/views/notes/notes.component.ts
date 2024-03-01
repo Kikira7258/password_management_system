@@ -117,8 +117,10 @@ applySearchFilter() {
   if(this.searchQuery) {
     // Check if the searchQuery is not empty
     this.filteredNotes = this.notes.filter(note =>
-      note.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-      note.note.toLowerCase().includes(this.searchQuery.toLowerCase())
+      note.title?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      note.note.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      note.item?.username.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      note.item?.website.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
   } else {
     //Reset to original list if search query is empty

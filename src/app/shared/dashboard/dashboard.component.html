@@ -1,4 +1,76 @@
-<aside class="h-screen bg-dark-gray w-[200px] fixed p-8">
+
+<nav class="sidebar">
+    <div class="logo sidebar-top">
+
+        <div class="list-item-text">
+            <img src="assets/images/logos/safe-secret.png" alt="logo" class="w-24 mb-2" /> 
+        </div>
+
+        <!-- 
+            <span class="brand">Panel</span>
+            <i class="fab fa-sketch"></i>
+            <img src="assets/images/logos/safe-secret.png" alt="logo" class="w-24 mb-2" /> 
+        -->
+    </div>
+
+    <div class="sidebar-center">
+        <ul class="list">
+            <a routerLink="/items" routerLinkActive="active" class="group">
+                <li class="list-item">
+                    <div>
+                        <i class="list-icon fa-solid fa-shield"></i>
+                        <span class="list-item-text">Items</span>
+                    </div>
+                    <span class="badge list-item-text group-[.active]:bg-cyan group-hover:bg-cyan">10</span>
+                </li>
+            </a>
+
+            <a routerLink="/favorites" routerLinkActive="active" class="group">
+                <li class="list-item">
+                    <div>
+                        <i class="list-icon fa-solid fa-heart"></i>
+                        <span class="list-item-text">Favorites</span>
+                    </div>
+                    <span class="badge list-item-text group-[.active]:bg-cyan group-hover:bg-cyan">10</span>
+                </li>
+            </a>
+
+            <a routerLink="/notes" routerLinkActive="active" class="group">
+                <li class="list-item">
+                    <div>
+                        <i class="list-icon fa-solid fa-sticky-note"></i>
+                        <span class="list-item-text">Notes</span>
+                    </div>
+                    <span class="badge list-item-text group-[.active]:bg-cyan group-hover:bg-cyan">10</span>
+                </li>
+            </a>
+        </ul>
+    </div>
+
+    <div class="sidebar-bottom">
+        <div class="list-item">
+            <a routerLink="/login">
+                <i class="fa-solid fa-right-from-bracket logout"></i>
+            </a>
+        </div>
+    </div>
+    
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <aside class="h-screen bg-dark-gray w-[200px] fixed p-8">
     <div class="mb-8 border-b-[1px] border-opacity-30 border-off-white w-full">
         <img src="assets/images/logos/safe-secret.png" alt="logo" class="w-24 mb-2" />
     </div>
@@ -47,4 +119,4 @@
         <a routerLink="/login"><span class="mr-2"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>Logout</a>
 
     </div>
-</aside>
+</aside> -->
