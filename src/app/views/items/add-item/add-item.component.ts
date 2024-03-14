@@ -61,6 +61,31 @@ export class AddItemComponent implements OnInit {
   }
 
 
+  // Check if the form is valid
+  isFormValid() {
+    return this.isUsernameValid() && this.isPasswordValid() && this.isWebsiteValid() && this.isNoteValid();
+  }
+
+  // Check if username is valid
+  isUsernameValid(): boolean {
+    return this.data.username.trim().length >= 3 && this.data.username.trim().length <= 50;
+  }
+
+ // Check if website is valid
+ isWebsiteValid(): boolean {
+    return this.data.website.trim() !== '';
+  }
+
+  // Check if password is valid
+  isPasswordValid(): boolean {
+    return this.data.password.trim().length >= 6 && this.data.password.trim().length <= 50;
+  }
+
+  // Check if note is valid
+  isNoteValid() : boolean {
+    return this.data.note.trim().length <= 1000; // Note should not exceed 1000 characters
+  }
+
 
   // >> Toggle password visibility <<
   isPasswordVisible: boolean = false;

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
 import { APIResponse } from '../models/api-response';
 import { Notes } from '../models/notes';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,11 @@ export class NoteService {
 
   private _handleHttpErrors(defaultValue: any) {
     return(err: any) => {
+
+      if (err.status === 401) {
+        this.router.navigateByUrl('/login');
+      }
+
       console.log(err);
       return of({
         status: err.status,
@@ -22,7 +28,7 @@ export class NoteService {
     }
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   // get all notes
   getAllNotes(): Observable<APIResponse<Notes[]>> {

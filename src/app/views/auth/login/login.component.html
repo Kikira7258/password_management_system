@@ -2,30 +2,33 @@
 
     <div class="login-container w-1/2 h-fit flex items-stretch rounded-md overflow-hidden">
         <!-- Login -->
-        <div class="bg-white w-1/2 p-6 text-dark-gray">
+        <div class="bg-white w-1/2 max-lg:w-full p-6 text-dark-gray max-lg:rounded-tr-md max-lg:rounded-br-md">
             <h1 class="text-2xl text-center mb-4">Login</h1>
-            <form>
-                <div>
+            <form (ngSubmit)="onSubmit()">
+                <div class="">
                     <div class="login-input">
-                        <input type="text" name="Email" required="" />
+                        <input type="text" name="Email" required="" [(ngModel)]="data.email" />
                         <label>Email</label>
                     </div>
                     <div class="login-input">
-                        <input type="password" name="Password" required="" />
+                        <input type="password" name="Password" required="" [(ngModel)]="data.password" />
                         <label>Password</label>
                     </div>
                 </div>
 
-                <div class="text-xs flex flex-wrap justify-between mt-4">
-                    <div class="flex items-center">
+                <div class="text-xs flex flex-wrap justify-between mt-4 max-md:flex-col">
+                    <div class="flex items-center max-w-max max-md:mx-auto">
                         <input class="mr-2" type="checkbox" name="remember" id="remember" />
                         <label for="remember">Remember me</label>                        
                     </div>
-                    <a href="">Forgot Password?</a>
+                    <a href="" class="text-blue-700 max-dm:mt-4 max-md:text-center max-md:mt-4">Forgot Password?</a>
                 </div>
 
-                <div class="flex flex-col items-center mt-8 mb-4">
-                    <button class="bg-cyan w-40 rounded-md shadow-md shadow-off-white py-[4px]" routerLink="/items">Login</button>
+                <div class="flex flex-col items-center my-4">
+                    <div class="my-4">
+                        <button type="submit" class="bg-cyan w-40 rounded-md shadow-md shadow-off-white py-[4px]">Login</button>
+                    </div>
+                    <a routerLink="/register" class="text-blue-700 text-xs max-lg:mt-4 max-lg:text-center hidden max-lg:block">Register</a>
                 </div>
                 
                 <p class="text-center text-xs">Or use your account</p>
@@ -38,9 +41,9 @@
         </div>
 
         <!-- Welcome back -->
-        <div class="w-1/2 bg-no-repeat bg-cover bg-center bg-[url(assets/backgrounds/bg2.png)]">
+        <div class="w-1/2 bg-no-repeat bg-cover bg-center bg-[url(assets/backgrounds/bg2.png)] max-lg:hidden">
             <div class="bg-dark p-6 h-full bg-opacity-50">
-                <div class="py-20 flex flex-col justify-between h-full">
+                <div class="py-24 flex flex-col justify-between h-full">
                     <h1 class="text-2xl text-off-white text-center">Welcome back</h1>
                     <p class="text-off-white text-center">Don't have an account?<br><span>register here.</span></p>
                     

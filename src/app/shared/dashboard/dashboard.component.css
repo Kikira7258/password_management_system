@@ -8,6 +8,9 @@
     background-color: #44F6E1;
 }
 
+.active .list-item {
+    background-color: #1D1F21;
+}
 
 
 .sidebar {
@@ -27,7 +30,7 @@
     display: flex;
     align-items: center;
     width: 80%;
-    background-color: none;
+    /* background-color: none; */
     padding: 10px 0;
     margin-bottom: 10px;
     border-bottom: 1px solid #D9D9D9;
@@ -65,7 +68,7 @@
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    background-color: none;
+    /* background-color: none; */
     padding: 10px;
     border-radius: 10px;
  }
@@ -74,21 +77,21 @@
     width: 30px;
     font-size: 20px;
  }
+ 
 
  .list-item:hover,
  .list-item.active {
-    background-color: #3D4348;
-    color: #fff;
+    color: #44F6E1;
  }
 
- .color-box {
+ /* .color-box {
     width: 20px;
     height: 20px;
     border: 1px solid #fff;
     border-radius: 5px;
     cursor: pointer;
     margin-right: 15px;
- }
+ } */
 
  /* .night-theme {
     background-color: #312e81;
@@ -102,22 +105,6 @@
     background-color: #111827;
  } */
 
- @media only screen and (max-width: 768px) {
-    .sidebar {
-        width: 50px;
-    }
-
-    .sidebar-top,
-    .sidebar-bottom,
-    .sidebar-center {
-        border-bottom: none;
-    }
-
-    .brand,
-    .list-item-text {
-        display: none;
-    }
- }
 
  /* .sidebar.night-theme {
     background-color: #44F6E1;
@@ -133,17 +120,32 @@
  }
 
  
- .list-item:hover,
- .list-item.active.night-theme {
-    background-color: #1D1F21;
-    color: #44F6E1
- }
-
 .logout {
     width: 30px;
     font-size: 30px;
 }
 
+
+
+
+/* Side bar responsive starts here */
+@media only screen and (max-width: 768px) {
+   .sidebar {
+       width: 50px;
+   }
+
+   .sidebar-top,
+   .sidebar-bottom,
+   .sidebar-center {
+       border-bottom: none;
+   }
+
+   .brand,
+   .list-item-text {
+       display: none;
+   }
+}
+/* Side bar responsive ends here */
 
 
 

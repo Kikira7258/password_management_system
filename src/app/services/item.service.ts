@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
 import { APIResponse } from '../models/api-response';
 import { Items } from '../models/items';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,11 @@ export class ItemService {
   private _handleHttpErrors (defaultData: any) {
     return(err: any) => {
       console.log(err);
+      
+      if (err.status === 401) {
+        this.router.navigateByUrl('/login');
+      }
+
       return of ({
         status: err.status,
         message: err.message,
@@ -22,7 +28,7 @@ export class ItemService {
     }
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   // get all items
   getAllItems(favorited? : boolean): Observable<APIResponse<Items[]>> {

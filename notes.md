@@ -31,15 +31,32 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # Fix Pagination visibility when only 1 page (Pagination should not be shown when there are one 1 page (Add a check for the last item, then relog the page if it's zero))
 
-# Make logo correspond with website
-
 # If Deleting Item note, then give a warning that the item will also be deleted
 
 # Add Authentication and authorization
 
-# validation directive
+# Add guards
 
 # validation
+
+# Get profile information
+
+# Add session timed out
+
+# logged in notification?
+
+# double password for registrationm
+
+# Oauth for Google and Gmail
+
+# forgot password set to email
+
+# save token on 'remember me' | token expires when window close
+
+# Fix Item max height
+
+# Change Background of login and registration
+
 
 
 

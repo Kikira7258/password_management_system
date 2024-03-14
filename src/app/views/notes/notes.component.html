@@ -12,7 +12,7 @@
                </div>
    
                <!-- User profile -->
-               <div class="flex items-center">
+               <div class="flex items-center" routerLink="/profile">
                 <img src="assets/temps/portrait.png" alt="logo" class="w-12 mb-2 mr-4 rounded-full" />
                    <div class="text-xs hidden sm:block">
                        <p class="font-bold text-white">Moya James</p>
@@ -34,7 +34,7 @@
 
             <div class="min-h-[35rem]">
                 <div class="grid grid-cols-1 gap-8 md:grid-cols-2" *ngIf="filteredNotes.length > 0">
-                    <div class="bg-off-white rounded-md flex justify-between items-center cursor-pointer p-4 h-[7.25rem] overflow-hidden" *ngFor="let note of filteredNotes" routerLink="{{note.item ? '/item-detail/' + note.item._id : '/note-detail/' + note._id}}"> <!-- If note has an item, go to item-detail, else go to note-detail -->
+                    <div class="bg-off-white rounded-md flex justify-between items-center cursor-pointer p-4 h-[7.25rem] overflow-hidden relative" *ngFor="let note of filteredNotes" routerLink="{{note.item ? '/item-detail/' + note.item._id : '/note-detail/' + note._id}}"> <!-- If note has an item, go to item-detail, else go to note-detail -->
      
                          <div class="flex items-center">
 
@@ -53,7 +53,7 @@
                          </div>
      
                          <div class="">
-                             <button (click)="deleteNote($event, note._id)" class=" hover:bg-red text-red bg-dark-gray hover:text-white h-8 w-8 rounded-full shadow-sm shadow-dark items-center">   
+                             <button (click)="deleteNote($event, note._id)" class=" hover:bg-red text-red bg-dark-gray hover:text-white h-8 w-8 rounded-full shadow-sm shadow-dark items-center absolute -translate-y-1/2 right-4">   
                                  <span class="max-w-max align-middle">
                                      <i class="fa-solid fa-x"></i>
                                  </span>   

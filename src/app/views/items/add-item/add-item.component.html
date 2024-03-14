@@ -9,8 +9,18 @@
             <form class="w-full" (submit)="addItem()">
                 <div class="flex flex-col mt-8 mb-12 text-off-white">
                     <label class="text-xs" for="username">Username</label>
-                    <input class="w-full border-b-[1px] text-white border-off-white bg-transparent outline-none" type="text" name="username" required="" [(ngModel)]="data.username" />
+                    <input class="w-full border-b-[1px] text-white border-off-white bg-transparent outline-none" 
+                            type="text" 
+                            name="username" 
+                            required
+                            minlength="3" 
+                            maxlength="50"
+                            required="" 
+                            [(ngModel)]="data.username" />                            
+                    <div class="text-red text-xs mt-4" *ngIf="!isUsernameValid()">Username must be between 3 and 50 characters.</div>  
                 </div>
+                
+
                 <div class="flex flex-col mt-8 mb-12">
                     <label class="text-xs text-off-white" for="password">Password</label>
                     <div class="flex justify-between border-b-[1px] border-off-white text-white">
@@ -19,14 +29,16 @@
                         name="password" 
                         required="" 
                         [(ngModel)]="data.password"
-                        type="{{isPasswordVisible ? 'text' : 'password'}}"
-                        />
+                        type="{{isPasswordVisible ? 'text' : 'password'}}" />
                         <button type="button" (click)="togglePasswordVisibility()" *ngIf="data.password">
                             <span class="hover:opacity-70" *ngIf="!isPasswordVisible"><i class="fa-solid fa-eye"></i></span>
                             <span class="hover:opacity-70" *ngIf="isPasswordVisible"><i class="fa-solid fa-eye-slash"></i></span>
                         </button>
                     </div>
+                    <div class="text-red text-xs mt-4" *ngIf="!isPasswordValid()">Password must be between 6 and 50 characters.</div>
                 </div>
+
+
                 <div class="flex flex-col mt-8 mb-12">
                     <label class="text-xs text-off-white" for="website">Website</label>
                     <input class="w-full border-b-[1px] border-off-white bg-transparent outline-none text-white" type="text" name="website" required="" [(ngModel)]="data.website" />

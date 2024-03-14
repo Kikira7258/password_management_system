@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { NotesComponent } from './views/notes/notes.component';
@@ -21,6 +21,8 @@ import { PaginationComponent } from './shared/pagination/pagination.component';
 import { ItemDetailComponent } from './views/items/item-detail/item-detail.component';
 import { NoteFormComponent } from './views/notes/note-form/note-form.component';
 import { NoteDetailComponent } from './views/notes/note-detail/note-detail.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { NoteDetailComponent } from './views/notes/note-detail/note-detail.compo
     PaginationComponent,
     ItemDetailComponent,
     NoteFormComponent,
-    NoteDetailComponent
+    NoteDetailComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,13 @@ import { NoteDetailComponent } from './views/notes/note-detail/note-detail.compo
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
