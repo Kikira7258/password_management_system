@@ -45,7 +45,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # logged in notification?
 
-# double password for registrationm
+# double password for registration
 
 # Oauth for Google and Gmail
 
