@@ -37,9 +37,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # Add guards
 
+# Make images corresspond to company images on listing and notes
+
 # validation
 
-# Get profile information
+# file upload
+
+# Add loader to profile save and cancel buttons
+
+# add view password on useer profile
 
 # Add session timed out
 
@@ -47,13 +53,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # double password for registration
 
+# Password change
+
+# Transfer the content from the item-detail to item-form
+
 # Oauth for Google and Gmail
 
 # forgot password set to email
 
 # save token on 'remember me' | token expires when window close
-
-# Fix Item max height
 
 # Change Background of login and registration
 

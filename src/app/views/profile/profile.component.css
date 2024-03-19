@@ -1,0 +1,31 @@
+.header-container {
+    position: relative;
+}
+
+.dropdown-content {
+    border-radius: 20px;
+    position: absolute;
+    right: 0;
+    top: 2rem;
+    background-color: #f9f9f9;
+    /* min-width: 160px; */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    padding: 1rem;
+    z-index: 1;
+    font-size: 0.9rem;
+}
+
+.dropdown-content ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-content ul li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.dropdown-content ul li:hover {
+    background-color: #ddd;
+}

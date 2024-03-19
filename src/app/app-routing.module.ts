@@ -10,7 +10,6 @@ import { RegisterComponent } from './views/auth/register/register.component';
 import { AddItemComponent } from './views/items/add-item/add-item.component';
 import { AddNoteComponent } from './views/notes/add-note/add-note.component';
 import { ProfileComponent } from './views/profile/profile.component';
-import { EditProfileComponent } from './views/profile/edit-profile/edit-profile.component';
 import { ItemFormComponent } from './views/items/item-form/item-form.component';
 import { ItemDetailComponent } from './views/items/item-detail/item-detail.component';
 import { NoteFormComponent } from './views/notes/note-form/note-form.component';
@@ -36,7 +35,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
 
   { path: 'profile', component: ProfileComponent },
-  { path: 'edit-profile', component: EditProfileComponent },
 ];
 
 @NgModule({

@@ -33,9 +33,6 @@ export class RegisterComponent implements OnInit {
       // Register a user
       this.userService.registerProfile(this.data).subscribe((res) => {
 
-        // Set authUserId
-        this.userService.authUserId = res.data.profile._id
-
         // Display a toaster on success user creation
         const Toast = Swal.mixin({
           toast: true,

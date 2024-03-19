@@ -5,21 +5,13 @@
         <div class="m-6">
 
             <!-- Header starts here-->
-            <div class="flex justify-between items-center mb-12">
+            <app-header>
                 <!-- Search bar -->
                 <div class="flex w-56 rounded-md items-center bg-off-white text-dark-gray">
                     <input type="search" class="w-full p-2 bg-transparent outline-none" placeholder="Search..." [(ngModel)]="searchQuery" (input)="applySearchFilter()" />
                 </div>
 
-                <!-- User profile -->
-                <div class="flex items-center cursor-pointer" routerLink="/profile">
-                    <img src="assets/temps/portrait.png" alt="logo" class="w-12 mb-2 mr-4 rounded-full" />
-                    <div class="text-xs hidden sm:block">
-                        <p class="font-bold text-white">Moya James</p>
-                        <p class="text-off-white">sampleEmail@gmail.com</p>
-                    </div>
-                </div>
-            </div>
+            </app-header>
             <!-- Header ends here-->
 
 

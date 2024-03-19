@@ -57,7 +57,7 @@ export class UserService {
         if (res.status === 'success') {
           // Update the authentication token and logged in user details
           this.auth_token = res.data.token;
-          this.loggedInUser = res.data.User;
+          this.loggedInUser = res.data.user;
 
           // Notify subscribers about the updated user
           this.loggedInUser$.next(this.loggedInUser);
@@ -114,15 +114,12 @@ export class UserService {
 
   // >>>>>>>>>>>>>>>>>>>> CRUD Operations <<<<<<<<<<<<<<<<<<<<
 
-    // Set user id
-    authUserId = '';
-
     // get profile data
     profileData : any;
 
     // Get user by ID || get user profile
-    getProfile(): Observable<APIResponse<User[]>> {
-      return this.http.get<APIResponse<User[]>>(`${this.API_URL}/${this.authUserId}`).pipe(tap((res) => {
+    getProfile(): Observable<APIResponse<any>> {
+      return this.http.get<APIResponse<any>>(`${this.API_URL}/${this.loggedInUser?._id}`).pipe(tap((res) => {
         
       }), catchError(this._handleHttpErrors(new User())));
     }
@@ -134,8 +131,8 @@ export class UserService {
 
 
     // Update user
-    updateProfile(id: string, data:User): Observable<APIResponse<User>> {
-      return this.http.put<APIResponse<User>>(this.API_URL + '/' + id, data).pipe(catchError(this._handleHttpErrors(new User())));
+    updateProfile(id: string, data:User): Observable<APIResponse<any>> {
+      return this.http.put<APIResponse<any>>(this.API_URL + '/' + id, data).pipe(catchError(this._handleHttpErrors(new User())));
     }
 
 
