@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class ProfileComponent implements OnInit {
 
-  // Initialize dropdownOpen with default value
+  // Initialize dropdownOpen variable
   dropdownOpen: boolean = false;
 
   // Initialize userDetail with default values
@@ -91,7 +91,7 @@ export class ProfileComponent implements OnInit {
   // >> add a listener for close dropdown on click outside <<
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    if (!this.elRef.nativeElement.contains(event.target)) {
+    if (!this.elRef.nativeElement.querySelector('.gear-container').contains(event.target)) {
       this.dropdownOpen = false; // Close dropdown if clicked outside
     }
   }

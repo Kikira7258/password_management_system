@@ -33,42 +33,65 @@ export class AddItemComponent implements OnInit {
 
   // >> Create a new item <<
   addItem() {
-    this.ItemService.createItem(this.data).subscribe(() => {
-      //Display SweetAlert on Success item creation
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        }
-      });
+    // Check if any input has a value
+    const hasValue = Object.values(this.data).some(value => !!value);
 
-      Toast.fire({
-        icon: 'success',
-        title: 'Item added successfully.'
-        
-      });
+    if (!hasValue) {
+      // If none of the fields have a value, display SweetAlert
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please fill in at least one field.'
+      })
 
-      // Redirect to the items page after item creation
-      setTimeout(() => {
-        this.router.navigate(['/items']);
-      }, 1000);
-    });
+      return
+    }
+
+    try {
+      this.ItemService.createItem(this.data).subscribe(() => {
+        //Display SweetAlert on Success item creation
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        console.log('Item added successfully:', this.data);
+        Toast.fire({
+          icon: 'success',
+          title: 'Item added successfully.'
+          
+        });
+  
+        // Redirect to the items page after item creation
+        setTimeout(() => {
+          this.router.navigate(['/items']);
+        }, 1000);
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!'
+      })
+      console.log('Item failed:', error);
+    }
+
   }
 
-
-  // Check if the form is valid
-  isFormValid() {
-    return this.isUsernameValid() && this.isPasswordValid() && this.isWebsiteValid() && this.isNoteValid();
-  }
 
   // Check if username is valid
   isUsernameValid(): boolean {
-    return this.data.username.trim().length >= 3 && this.data.username.trim().length <= 50;
+    const username = this.data.username.trim();
+
+    const regex = /^[a-zA-Z0-9_\-.@]+$/; // Regular expression pattern
+
+    return regex.test(username) && username.length >= 3 && username.length <= 50;
   }
 
  // Check if website is valid
@@ -76,15 +99,6 @@ export class AddItemComponent implements OnInit {
     return this.data.website.trim() !== '';
   }
 
-  // Check if password is valid
-  isPasswordValid(): boolean {
-    return this.data.password.trim().length >= 6 && this.data.password.trim().length <= 50;
-  }
-
-  // Check if note is valid
-  isNoteValid() : boolean {
-    return this.data.note.trim().length <= 1000; // Note should not exceed 1000 characters
-  }
 
 
   // >> Toggle password visibility <<
@@ -94,5 +108,14 @@ export class AddItemComponent implements OnInit {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+  onUsernameKeydown(event: KeyboardEvent) {
+    const allowedChars = /^[a-zA-Z0-9_\-.@]*$/;
+    if (!allowedChars.test(event.key)) {
+      event.preventDefault();
+    }
+  }
 
 }

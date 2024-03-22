@@ -43,7 +43,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # file upload
 
-# Add loader to profile save and cancel buttons
+# Add delete button for mobile view
 
 # add view password on useer profile
 
@@ -59,11 +59,13 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # Oauth for Google and Gmail
 
-# forgot password set to email
+# forgot password sent to email
 
 # save token on 'remember me' | token expires when window close
 
 # Change Background of login and registration
+
+# Verify email change
 
 
 

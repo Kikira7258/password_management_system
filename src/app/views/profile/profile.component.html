@@ -7,7 +7,7 @@
             <div class="header-container">
                 <div class="flex justify-between items-center text-off-white mb-12">
                     <p class="text-off-white font-bold">Profile</p>
-                    <button (click)="toggleDropdown()"><i class="fa-solid fa-gear"></i></button>
+                    <button (click)="toggleDropdown()"><span class="gear-container"><i class="fa-solid fa-gear"></i></span></button>
                 </div> 
                 
                 <!-- Dropdown content -->
@@ -24,7 +24,9 @@
                 <div class="md:flex md:justify-between md:gap-20" *ngIf="userDetail">
                     <div class="flex flex-col justify-between">
                         <img src="assets/temps/portrait.png" alt="profile" class="w-60 h-60 rounded-full mb-12 mx-auto" />
-                        <button class="bg-off-white w-60 rounded-md shadow-md shadow-dark-gray py-[4px] font-bold text-dark-gray mx-auto">Update Image</button>
+                        <!-- <input type="file" class="bg-off-white w-60 rounded-md shadow-md shadow-dark-gray py-[4px] font-bold text-dark-gray mx-auto" /> -->
+                        <input type="file" class="file-input file-input-bordered file-input-accent w-60 max-w-xs" />
+                        
                     </div>
 
                     <div class="flex flex-col justify-between w-full max-md:mt-8">
@@ -48,9 +50,6 @@
                     <button class="bg-red w-20 font-bold rounded-md shadow-md py-[4px] hover:opacity-75" routerLink="/items">Cancel</button>
                 </div>
                 
-                    
-                
-
             </form>
         </div>
     </div>

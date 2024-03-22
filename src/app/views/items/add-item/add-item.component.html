@@ -6,18 +6,26 @@
             <p class="text-off-white font-bold mb-12">Add Item</p>                  
     
       
-            <form class="w-full" (submit)="addItem()">
+            <form class="w-full" (submit)="form.valid && addItem()" #form="ngForm">
                 <div class="flex flex-col mt-8 mb-12 text-off-white">
                     <label class="text-xs" for="username">Username</label>
                     <input class="w-full border-b-[1px] text-white border-off-white bg-transparent outline-none" 
                             type="text" 
                             name="username" 
-                            required
                             minlength="3" 
                             maxlength="50"
-                            required="" 
-                            [(ngModel)]="data.username" />                            
-                    <div class="text-red text-xs mt-4" *ngIf="!isUsernameValid()">Username must be between 3 and 50 characters.</div>  
+                            [(ngModel)]="data.username"
+                            (keydown)="onUsernameKeydown($event)"
+                            #usernameInput="ngModel"
+                            [class.invalid]="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)"
+                            [class.valid]="usernameInput.valid && (usernameInput.dirty || usernameInput.touched)"
+                    />                            
+                    <div class="text-red text-xs mt-2" *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)">
+                        <!-- <div *ngIf="usernameInput.errors?.['required']">Username is required.</div> -->
+                        <div *ngIf="usernameInput.errors?.['minlength']">Username must be at least 3 characters long.</div>
+                        <div *ngIf="usernameInput.errors?.['maxlength']">Username cannot be more than 50 characters long.</div>
+                        <div *ngIf="usernameInput.errors?.['pattern']">invalid characters in username</div>
+                    </div>  
                 </div>
                 
 
@@ -27,7 +35,11 @@
                         <input 
                         class="w-full bg-transparent outline-none" 
                         name="password" 
-                        required="" 
+                        minlength="6" 
+                        maxlength="50"
+                        #userPasswordInput="ngModel"
+                        [class.invalid]="userPasswordInput.invalid && (userPasswordInput.dirty || userPasswordInput.touched)"
+                        [class.valid]="userPasswordInput.valid && (userPasswordInput.dirty || userPasswordInput.touched)"
                         [(ngModel)]="data.password"
                         type="{{isPasswordVisible ? 'text' : 'password'}}" />
                         <button type="button" (click)="togglePasswordVisibility()" *ngIf="data.password">
@@ -35,17 +47,56 @@
                             <span class="hover:opacity-70" *ngIf="isPasswordVisible"><i class="fa-solid fa-eye-slash"></i></span>
                         </button>
                     </div>
-                    <div class="text-red text-xs mt-4" *ngIf="!isPasswordValid()">Password must be between 6 and 50 characters.</div>
+                    
+                    <div class="text-red text-xs mt-2" *ngIf="userPasswordInput.invalid && (userPasswordInput.dirty || userPasswordInput.touched)">
+                        <div *ngIf="userPasswordInput.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                        <div *ngIf="userPasswordInput.errors?.['maxlength']">Password cannot be more than 50 characters long.</div>
+                    </div>
                 </div>
 
 
                 <div class="flex flex-col mt-8 mb-12">
                     <label class="text-xs text-off-white" for="website">Website</label>
-                    <input class="w-full border-b-[1px] border-off-white bg-transparent outline-none text-white" type="text" name="website" required="" [(ngModel)]="data.website" />
+                    <div>
+                        <input 
+                            class="w-full border-b-[1px] border-off-white bg-transparent outline-none text-white" 
+                            type="text" 
+                            name="website" 
+                            minlength="6" 
+                            maxlength="200"
+                            #websiteInput="ngModel"
+                            [class.invalid]="websiteInput.invalid && (websiteInput.dirty || websiteInput.touched)"
+                            [class.valid]="websiteInput.valid && (websiteInput.dirty || websiteInput.touched)"
+                            [(ngModel)]="data.website" />
+                    </div>
+
+                    <div class="text-red text-xs mt-2" *ngIf="websiteInput.invalid && (websiteInput.dirty || websiteInput.touched)">
+                        <div *ngIf="websiteInput.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                        <div *ngIf="websiteInput.errors?.['maxlength']">Password cannot be more than 200 characters long.</div>
+                    </div>
                 </div>
-                <div class="flex flex-col mt-8 mb-4">
+
+                
+                <div class="flex flex-col mt-8 mb-2">
                     <label class="text-xs text-off-white" for="note">Note</label>
-                    <textarea name="note" class="text-dark-gray p-4 w-full b border-b-[1px] bg-off-white rounded-md outline-none " rows="5" [(ngModel)]="data.note"></textarea>
+                    <div>
+                        <textarea 
+                            name="note" 
+                            class="text-dark-gray p-4 w-full b border-b-[1px] bg-off-white rounded-md outline-none " 
+                            rows="5"
+                            minlength="6" 
+                            maxlength="200"
+                            #noteInput="ngModel"
+                            [class.invalid]="noteInput.invalid && (noteInput.dirty || noteInput.touched)"
+                            [class.valid]="noteInput.valid && (noteInput.dirty || noteInput.touched)"
+                            [(ngModel)]="data.note">
+                        </textarea>
+                        
+                        <div class="text-red text-xs" *ngIf="noteInput.invalid && (noteInput.dirty || noteInput.touched)">
+                            <div *ngIf="noteInput.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                            <div *ngIf="noteInput.errors?.['maxlength']">Password cannot be more than 200 characters long.</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="flex justify-between items-center">
