@@ -5,6 +5,7 @@ export class User {
         public last_nm? : string, 
         public email? : string, 
         public password? : string,
+        public confirmPassword? : string,
         public profileImage? : string
     ) {}
 }

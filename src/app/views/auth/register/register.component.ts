@@ -20,7 +20,8 @@ export class RegisterComponent implements OnInit {
     first_nm: '',
     last_nm: '',
     email: '',
-    password: ''
+    password: '',
+    confirm_password: ''
   };
   
   constructor(private userService: UserService, private router: Router) {}

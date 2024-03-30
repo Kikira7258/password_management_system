@@ -30,6 +30,7 @@ export class AddNoteComponent implements OnInit {
 
   // >> Create a new note <<
   addNote() {
+    // Call the createNote method of the NoteService
     this.NoteService.createNote(this.data).subscribe(() => {
       // Display sweetAlert on success item creation
       const Toast = Swal.mixin({

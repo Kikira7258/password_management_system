@@ -86,9 +86,9 @@ body {
 }
 
 .login-container .login-input input:focus ~ label,
-.login-container .login-input input:valid ~ label,
+.login-container .login-input input:not(:placeholder-shown) ~ label,
 .register-container .register-input input:focus ~ label,
-.register-container .register-input input:valid ~ label {
+.register-container .register-input input:not(:placeholder-shown) ~ label {
     top: -20px;
     left: 0;
     color: #44F6E1;

@@ -17,12 +17,11 @@ import { AddItemComponent } from './views/items/add-item/add-item.component';
 import { AddNoteComponent } from './views/notes/add-note/add-note.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { PaginationComponent } from './shared/pagination/pagination.component';
-import { ItemDetailComponent } from './views/items/item-detail/item-detail.component';
 import { NoteFormComponent } from './views/notes/note-form/note-form.component';
-import { NoteDetailComponent } from './views/notes/note-detail/note-detail.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UpdatePasswordComponent } from './views/profile/update-password/update-password.component';
+import { ItemFormComponent } from './views/items/item-form/item-form.component';
 
 @NgModule({
   declarations: [
@@ -37,11 +36,10 @@ import { UpdatePasswordComponent } from './views/profile/update-password/update-
     AddNoteComponent,
     ProfileComponent,
     PaginationComponent,
-    ItemDetailComponent,
     NoteFormComponent,
-    NoteDetailComponent,
     HeaderComponent,
-    UpdatePasswordComponent
+    UpdatePasswordComponent,
+    ItemFormComponent
   ],
   imports: [
     BrowserModule,

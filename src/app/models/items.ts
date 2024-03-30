@@ -1,5 +1,6 @@
 export class Items {
     _id: string;
+    name: string;
     username: string;
     password: string;
     website: string;
@@ -9,8 +10,9 @@ export class Items {
     createdAt: Date; 
     updatedAt: Date;
 
-    constructor(_id?: string, username?: string, password?: string, website?: string, timeStamp?: string, note?: string, favorite?: boolean, createdAt?: Date, updatedAt?: Date) {
+    constructor(_id?: string, name?: string, username?: string, password?: string, website?: string, timeStamp?: string, note?: string, favorite?: boolean, createdAt?: Date, updatedAt?: Date) {
         this._id = _id!;
+        this.name = name!;
         this.username = username!;
         this.password = password!;
         this.website = website!;
