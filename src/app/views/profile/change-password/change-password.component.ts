@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./change-password.component.css']
 })
 export class ChangePasswordComponent {
+  @Input() open: boolean = false;
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
 
   currentPassword: string = '';

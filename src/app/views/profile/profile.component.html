@@ -55,4 +55,4 @@
     </div>
 </div>
 
-<app-change-password *ngIf="showChangePasswordModal" (close)="closeChangePasswordModal()"></app-change-password>
+<app-change-password [open]="showChangePasswordModal" (close)="closeChangePasswordModal()"></app-change-password>
