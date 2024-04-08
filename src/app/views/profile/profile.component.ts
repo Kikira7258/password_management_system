@@ -23,6 +23,20 @@ export class ProfileComponent implements OnInit {
     password: ''
   }
 
+
+  // Initialize showChangePasswordModal variable
+  showChangePasswordModal: boolean = false;
+
+  openChangePasswordModal() {
+    this.showChangePasswordModal = true;
+  }
+
+  closeChangePasswordModal() {
+    this.showChangePasswordModal = false;
+  }
+ // >> ------------------------------- <<
+
+
   // Loader
   loading: boolean = false
 
@@ -61,22 +75,7 @@ export class ProfileComponent implements OnInit {
         console.log('User updated successfully:', updateProfile);
 
         // Show SweetAlert for success
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 1000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-          }
-        });
-
-        Toast.fire({
-          icon: 'success',
-          title: 'User updated successfully.'
-        });
+        this.showSuccessToast();
 
       }
     })
@@ -95,8 +94,69 @@ export class ProfileComponent implements OnInit {
       this.dropdownOpen = false; // Close dropdown if clicked outside
     }
   }
+// >> Function to handle dropdown ends here <<
 
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+ // >> Function to confirm delete account <<
+ confirmDelete() {
+  Swal.fire({
+    title: 'Are you sure you want to delete your account?',
+    text: "You will not be able to recover you account!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Call the delete account API enpoint
+      this.userService.deleteProfile(this.userDetail._id!).subscribe({
+        next: () => {
+          // on successful deletion, navigate to the login page or perform any other action
+          this.router.navigate(['/login']);
+          // Show success message
+          Swal.fire(
+            'Deleted!',
+            'Your account has been deleted.',
+            'success'
+          );
+        },
+        error: (error) => {
+          console.log('Error deleting account:', error);
+          // Show error message
+          Swal.fire(
+            'Error!',
+            'An error occurred while deleting your account. Please try again later.',
+            'error'
+          );
+        }
+      });
+    }
+  });
+ }
+
+
+
+ // Show success toast
+ showSuccessToast() {
+   const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer
+    }
+   });
+   Toast.fire({
+    icon: 'success',
+    title: 'User updated successfully.'
+   });
+ }
+
+ 
 
 }

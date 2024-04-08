@@ -139,6 +139,23 @@ export class UserService {
     deleteProfile(id: string): Observable<APIResponse<User>> {
       return this.http.delete<APIResponse<User>>(this.API_URL + '/' + id).pipe(catchError(this._handleHttpErrors(new User())));
     }
+
   // >>>>>>>>>>>>>>>>>>>> End of CRUD Operations <<<<<<<<<<<<<<<<<<<<
+
+
+
+    // Add the changePassword method to your UserService class
+    changePassword(currentPassword: string, newPassword: string): Observable<APIResponse> {
+      const body = { currentPassword, newPassword }; // Prepare the request body
+      return this.http.put<APIResponse>(`${this.API_URL}/changePassord`, body).pipe(
+        catchError(this._handleHttpErrors(new User()))
+      );
+    }
+
+    // Define a common error handler method
+    // private handleError(error: any): Observable<never> {
+    //   console.error('An error occurred:', error);
+    //   return throwError('Something went wrong. Please try again later.');
+    // }
 
 }

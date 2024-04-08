@@ -13,8 +13,8 @@
                 <!-- Dropdown content -->
                 <div class="dropdown-content" *ngIf="dropdownOpen">
                     <ul>
-                        <li>Change password</li>
-                        <li>Delete account</li>
+                        <li><button (click)="openChangePasswordModal()">Change password</button></li>
+                        <li><button class="text-red" (click)="confirmDelete()">Delete Account</button></li>
                     </ul>
                 </div>
             </div>
@@ -54,3 +54,5 @@
         </div>
     </div>
 </div>
+
+<app-change-password *ngIf="showChangePasswordModal" (close)="closeChangePasswordModal()"></app-change-password>

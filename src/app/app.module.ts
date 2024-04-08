@@ -20,8 +20,8 @@ import { PaginationComponent } from './shared/pagination/pagination.component';
 import { NoteFormComponent } from './views/notes/note-form/note-form.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { UpdatePasswordComponent } from './views/profile/update-password/update-password.component';
 import { ItemFormComponent } from './views/items/item-form/item-form.component';
+import { ChangePasswordComponent } from './views/profile/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +38,8 @@ import { ItemFormComponent } from './views/items/item-form/item-form.component';
     PaginationComponent,
     NoteFormComponent,
     HeaderComponent,
-    UpdatePasswordComponent,
-    ItemFormComponent
+    ItemFormComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
