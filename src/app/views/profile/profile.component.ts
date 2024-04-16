@@ -14,13 +14,17 @@ export class ProfileComponent implements OnInit {
   // Initialize dropdownOpen variable
   dropdownOpen: boolean = false;
 
+  // Initialize fileSizeError variable
+  fileSizeError: boolean = false;
+
   // Initialize userDetail with default values
   userDetail: User = {
     _id: '',
     first_nm: '',
     last_nm: '',
     email: '',
-    password: ''
+    password: '',
+    profileImage: ''
   }
 
 
@@ -64,6 +68,11 @@ export class ProfileComponent implements OnInit {
 
 
   updateProfile() {
+    // Check if there is a file size error
+    if (this.fileSizeError) {
+      return; // Exit the method without proceeding if there is a file size error
+    }
+
     // Call the updateUser method of the userService
     this.userService.updateProfile(this.userDetail._id!, this.userDetail).subscribe({
       next: updateProfile => {
@@ -77,8 +86,18 @@ export class ProfileComponent implements OnInit {
         // Show SweetAlert for success
         this.showSuccessToast();
 
+      },
+      error: (error) => {
+        console.log('Error updating profile:', error);
+
+        // Show error message
+        Swal.fire({
+          icon: 'error',
+          title: 'Update Failed',
+          text: 'An error occurred while updating your profile. Please try again later.'
+        });
       }
-    })
+    });
   }
 
 
@@ -155,6 +174,39 @@ export class ProfileComponent implements OnInit {
     icon: 'success',
     title: 'User updated successfully.'
    });
+ }
+
+
+ // Handles image preview when a file is selected
+ onFileSelected(event: any) {
+  const file: File = event.target.files[0];
+
+  // Check if a file is selected
+  if (file) {
+
+    // Check file size (in bytes)
+    const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB in bytes
+    if (file.size > maxSizeInBytes) {
+      // Set fileSizeError to true to display the error message
+      this.fileSizeError = true;
+      return;
+    }
+
+    // Reset fileSizeError if the size is within the limit
+    this.fileSizeError = false;
+
+    // Create a FilereadReader object to read the file
+    const reader = new FileReader();
+
+    // Read the file as data URL, which allows displaying the image preview
+    reader.readAsDataURL(file);
+
+    // Define a callback function to be executed when reading is completed
+    reader.onload = (e: any) => {
+      // Update the image src eith the data URL
+      this.userDetail.profileImage = e.target.result;
+    }
+  }
  }
 
  
