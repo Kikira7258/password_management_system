@@ -24,18 +24,78 @@
                 <div>
                     <div class="flex justify-between gap-8">
                         <div class="register-input">
-                            <input type="text" name="fname" placeholder="" required="" [(ngModel)]="data.first_nm" />
+                            <input 
+                                type="text" 
+                                name="fname" 
+                                placeholder="" 
+                                minlength="3"
+                                maxlength="20"
+                                required
+                                [(ngModel)]="data.first_nm" 
+                                #fname="ngModel"
+                                [class.invalid]="fname.invalid && (fname.dirty || fname.touched)"
+                                [class.valid]="fname.valid && (fname.dirty || fname.touched)"
+                                (input)="restrictInput($event)"
+                                pattern="[a-zA-Z]*"
+                            />
                             <label for="fname">First Name</label>
+
+                            <div class="text-red text-xs" *ngIf="fname.invalid && (form.submitted || fname.dirty || fname.touched)">
+                                <div *ngIf="fname.errors?.['required']">First Name is required</div>
+                                <div *ngIf="fname.errors?.['minlength']">First Name must be at least 3 characters long</div>
+                                <div *ngIf="fname.errors?.['maxlength']">First Name cannot be more than 50 characters long</div>
+                                <div *ngIf="fname.errors?.['pattern']">invalid characters in First Name</div>
+                            </div>
                         </div>
+                        
                         <div class="register-input">
-                            <input type="text" name="lname" placeholder="" required="" [(ngModel)]="data.last_nm" />
+                            <input 
+                                type="text" 
+                                name="lname" 
+                                placeholder=""
+                                minlength="3" 
+                                maxlength="20" 
+                                required 
+                                [(ngModel)]="data.last_nm" 
+                                #lname="ngModel"
+                                [class.invalid]="lname.invalid && (lname.dirty || lname.touched)"
+                                [class.valid]="lname.valid && (lname.dirty || lname.touched)"
+                                (input)="restrictInput($event)"
+                                pattern="[a-zA-Z]*"
+                            />
                             <label for="lname">Last Name</label>
+                            <div class="text-red text-xs" *ngIf="lname.invalid && (form.submitted || lname.dirty || lname.touched)">
+                                <div *ngIf="lname.errors?.['required']">Last Name is required</div>
+                                <div *ngIf="lname.errors?.['minlength']">Last Name must be at least 3 characters long</div>
+                                <div *ngIf="lname.errors?.['maxlength']">Last Name cannot be more than 50 characters long</div>
+                                <div *ngIf="lname.errors?.['pattern']">invalid characters in Last Name</div>
+                            </div>
                         </div>
                     </div>
                     <div class="register-input">
-                        <input type="text" name="Email" placeholder="" required="" [(ngModel)]="data.email" />
-                        <label>Email</label>
+                        <input 
+                            type="text" 
+                            name="email" 
+                            placeholder="" 
+                            [(ngModel)]="data.email" 
+                            required
+                            email
+                            #email="ngModel"
+                            minlength="3"
+                            maxlength="50" 
+                            [class.invalid]="email.invalid && (email.dirty || email.touched)"
+                            [class.valid]="email.valid && (email.dirty || email.touched)"
+                        />
+                        <label for="email">Email</label>
+
+                        <div class="text-red text-xs" *ngIf="email.invalid && (form.submitted || email.dirty || email.touched)">
+                            <div *ngIf="email.errors?.['required']">Email is required</div>
+                            <div *ngIf="email.errors?.['minlength']">Email must be at least 3 characters long</div>
+                            <div *ngIf="email.errors?.['maxlength']">Email cannot be more than 50 characters long</div>
+                            <div *ngIf="email.errors?.['email']">Invalid email format</div>
+                        </div>
                     </div>
+                    
                     <div class="flex justify-between gap-8">                        
                         <div class="register-input">
                             <input 
@@ -45,6 +105,7 @@
                                 required="true" 
                                 [(ngModel)]="data.password" 
                                 minlength="8"
+                                maxlength="50"
                                 #password="ngModel"
                                 [class.invalid]="password.invalid && (password.dirty || password.touched)"
                                 [class.valid]="password.valid && (password.dirty || password.touched)"
@@ -54,6 +115,7 @@
                             <div class="text-red text-xs" *ngIf="password.invalid && (form.submitted || password.dirty || password.touched)">
                                 <div *ngIf="password.errors?.['required']">Passsword is required</div>
                                 <div *ngIf="password.errors?.['minlength']">Pass must be at least 8 characters long</div>
+                                <div *ngIf="password.errors?.['maxlength']">Pass cannot be more than 50 characters long</div>
                             </div>
                         </div>
                         

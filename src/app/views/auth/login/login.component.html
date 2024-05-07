@@ -4,15 +4,53 @@
         <!-- Login -->
         <div class="bg-white w-1/2 max-lg:w-full p-6 text-dark-gray max-lg:rounded-tr-md max-lg:rounded-br-md">
             <h1 class="text-2xl text-center mb-4">Login</h1>
-            <form (ngSubmit)="onSubmit()">
+            <form (ngSubmit)="onSubmit(form)" #form="ngForm">
                 <div class="">
-                    <div class="login-input">
-                        <input type="text" name="Email" required="" [(ngModel)]="data.email" />
-                        <label>Email</label>
+                    <div class="login-input">                        
+                        <input 
+                            type="email" 
+                            name="email" 
+                            placeholder=" " 
+                            [(ngModel)]="data.email"
+                            required
+                            email 
+                            #email="ngModel"
+                            minlength="3"
+                            maxlength="50"
+                            [class.invalid]="email.invalid && (email.dirty || email.touched)"
+                            [class.valid]="email.valid && (email.dirty || email.touched)"
+                            />
+                        <label for="email">Email</label>
+                        
+                        <div class="text-red text-xs" *ngIf="email.invalid && (form.submitted || email.dirty || email.touched)">
+                            <div *ngIf="email.errors?.['required']">Email is required.</div>
+                            <div *ngIf="email.errors?.['minlength']">Email must be at least 3 characters long.</div>
+                            <div *ngIf="email.errors?.['maxlength']">Email cannot be more than 50 characters long.</div>
+                            <div *ngIf="email.errors?.['email']">Invalid email format</div>
+                        </div>
                     </div>
+
                     <div class="login-input">
-                        <input type="password" name="Password" required="" [(ngModel)]="data.password" />
+                        <input 
+                            type="password" 
+                            name="Password" 
+                            placeholder=" " 
+                            [(ngModel)]="data.password" 
+                            required 
+                            #password="ngModel"
+                            minlength="6"
+                            maxlength="50"
+                            [class.invalid]="password.invalid && (password.dirty || password.touched)"
+                            [class.valid]="password.valid && (password.dirty || password.touched)"
+                        />
+                        
                         <label>Password</label>
+
+                        <div class="text-red text-xs mt-2" *ngIf="password.invalid && (form.submitted || password.dirty || password.touched)">
+                            <div *ngIf="password.errors?.['required']">Password is required.</div>
+                            <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</div>  
+                            <div *ngIf="password.errors?.['maxlength']">Password cannot be more than 50 characters long.</div>
+                        </div>
                     </div>
                 </div>
 

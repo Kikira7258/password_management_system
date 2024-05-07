@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -25,12 +27,27 @@ export class ChangePasswordComponent {
     }
 
     // Call the UserService method to change password
-    this.userService.changePassword(this.currentPassword, this.newPassword).subscribe({
-      next: () => {
+    this.userService.changePassword({
+      currentPassword: this.currentPassword, 
+      newPassword: this.newPassword, 
+      confirmPassword: this.confirmPassword}).subscribe({
+      next: (res) => {
+        console.log(res);
+        
         // Password successfully changed
         this.closeModal(); // Close the modal
 
-        // Optionally, show a sweet alert message (implement later)
+
+        // Show Sweet Alter message
+        Swal.fire({
+          icon: 'success',
+          title: 'Password Updated successfully.',
+          showConfirmButton: false,
+          timer: 1500 // Close after 1.5 seconds
+        }).then(() => {
+          // Logout user
+          this.userService.logout();
+        })
       },
       error: (error: any) => {
         // handle error response from API

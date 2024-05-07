@@ -36,7 +36,7 @@ export class UserService {
         this.router.navigateByUrl('/login');
       }
 
-      return of ({
+      return of({
         status: error.status,
         message: error.message,
         data: defaultValue
@@ -145,9 +145,8 @@ export class UserService {
 
 
     // Add the changePassword method to your UserService class
-    changePassword(currentPassword: string, newPassword: string): Observable<APIResponse> {
-      const body = { currentPassword, newPassword }; // Prepare the request body
-      return this.http.put<APIResponse>(`${this.API_URL}/changePassord`, body).pipe(
+    changePassword(credentials:{currentPassword: string, newPassword: string, confirmPassword: string}): Observable<APIResponse> {
+      return this.http.post<APIResponse>(`${this.API_URL}/change-password`, credentials).pipe(
         catchError(this._handleHttpErrors(new User()))
       );
     }

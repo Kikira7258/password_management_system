@@ -51,7 +51,7 @@ export class ItemsComponent implements OnInit {
   getAllItems() {
     this.loading = true
 
-    try {
+
       // Limit items per page || Pagination
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
       const endIndex = startIndex + this.itemsPerPage;
@@ -59,15 +59,18 @@ export class ItemsComponent implements OnInit {
       this.itemService.getAllItems().subscribe(results => {
         this.items = results.data.slice(startIndex, endIndex);
         this.totalItems = results.data.length;
+
+        if (this.items.length === 0 && this.currentPage > 1) {
+          this.currentPage = Math.max(1, this.currentPage - 1);
+          this.getAllItems();
+        } else {
+          // Search Filter
+          this.filteredItems = this.items;
+          this.loading = false;
+        }
   
-        // Search Filter
-        this.filteredItems = this.items;
       })
-    } catch (error) {
-      console.error('Error fetching items', error)
-    } finally {
-      this.loading = false;
-    }
+   
 
   }
 //>>>>>>>>>>>>>>>>>>>>
@@ -96,11 +99,6 @@ export class ItemsComponent implements OnInit {
             'Your item has been deleted.',
             'success'
           );
-          
-          setTimeout(() => {
-            this.router.navigate(['/items']);
-          }, 1000);
-
           this.getAllItems()
         })
       }
@@ -150,8 +148,8 @@ updateFavorite(item: Items) {
     if(this.searchQuery) {
       // Check if the searchQuery is not empty
       this.filteredItems = this.items.filter(item =>
-        item.username.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        item.website.toLowerCase().includes(this.searchQuery.toLowerCase())
+        item.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        item.website?.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
     } else {
       //Reset to original list if search query is empty

@@ -58,29 +58,28 @@
 
 
            <!-- >>>>>>>>>> No item section <<<<<<<<<< -->
-           <div *ngIf="loading" class="loader">
+           <div *ngIf="loading" class="loader"></div>
 
-                <!-- No items -->
-                <div *ngIf="!loading">
+            <!-- No items -->
+            <div *ngIf="!loading">
 
                 <!-- Content when not loading -->
-                
-                    <!--No favorited item -->
-                    <div *ngIf="filteredNotes.length === 0">
-                        <div class="">
-                            <h1 class="text-off-white font-bold text-center pb-8">No items favorited</h1>
-                            <img src="assets/backgrounds/no-item.jpg" alt="no-items" class="w-[28rem] mx-auto rounded-md">
-                        </div>
+            
+                <!--No favorited item -->
+                <div *ngIf="filteredNotes.length === 0">
+                    <div class="">
+                        <h1 class="text-off-white font-bold text-center pb-8">No items favorited</h1>
+                        <img src="assets/backgrounds/no-item.jpg" alt="no-items" class="w-[28rem] mx-auto rounded-md">
                     </div>
+                </div>
                 <!-- ----------------------- -->
 
-                </div>
-            </div>
+            </div>            
             <!-- >>>>>>>>>><<<<<<<<<< -->
 
 
             <!-- Pagination buttons starts here-->            
-            <div class="relative w-full">
+            <div class="relative w-full" *ngIf="totalNotes > notesPerPage">
                 <app-pagination
                     [currentPage]="currentPage"
                     [totalPages]="calculateTotalPages()"

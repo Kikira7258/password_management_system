@@ -22,7 +22,7 @@ export class FavoritesComponent implements OnInit {
   // Pagination
   totalItems: number = 0;
   currentPage = 1; // Current Page
-  itemsPerPage = 6; // Number of items per page
+  itemsPerPage = 2; // Number of items per page
 
   // Loader
   loading: boolean = false
@@ -44,27 +44,24 @@ constructor(private itemService: ItemService){}
 
  // >> Get all favorited items <<
   getAllFavoritedItems() {
-
     this.loading = true;
-     try {
        // Limit items per page || Pagination
-   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-   const endIndex = startIndex + this.itemsPerPage;
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
  
      this.itemService.getAllItems(true).subscribe(results => {
        this.items = results.data.slice(startIndex, endIndex);
        this.totalItems = results.data.length;
  
- 
        // Filter only favorited items
+       if (this.items.length === 0 && this.currentPage > 1) {
+        this.currentPage = Math.max(1, this.currentPage - 1);
+        this.getAllFavoritedItems();
+      } else {
        this.filteredItems = this.items.filter(item => item.favorite);
+       this.loading = false;
+      }
      });
-
-     } catch (error) {
-      console.error('Error fetching favorites', error)
-     } finally {
-      this.loading = false;
-     }
   }
 
 //>>>>>>>>>>>>>>>>>>>>
@@ -147,8 +144,8 @@ applySearchFilter() {
   if(this.searchQuery) {
     // Check if the searchQuery is not empty
     this.filteredItems = this.items.filter(item =>
-      item.username.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-      item.website.toLowerCase().includes(this.searchQuery.toLowerCase())
+      item.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      item.website?.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
   } else {
     //Reset to original list if search query is empty

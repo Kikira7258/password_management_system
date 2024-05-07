@@ -27,6 +27,8 @@ export class ProfileComponent implements OnInit {
     profileImage: ''
   }
 
+  // Initialize initialUserDetail to store initial form values (This is so the form don't save if there are no changes made)
+  initialUserDetail: User;
 
   // Initialize showChangePasswordModal variable
   showChangePasswordModal: boolean = false;
@@ -44,7 +46,9 @@ export class ProfileComponent implements OnInit {
   // Loader
   loading: boolean = false
 
-  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private elRef: ElementRef) { }
+  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private elRef: ElementRef) {
+    this.initialUserDetail = { ...this.userDetail };
+   }
 
   ngOnInit(): void {
       this.getUserProfile(); // Call getUserProfile on component initialization
@@ -56,6 +60,13 @@ export class ProfileComponent implements OnInit {
     this.userService.getProfile().subscribe({
       next: (response) => {
         this.userDetail = response.data.user;
+
+        // Store initial form values
+        this.initialUserDetail = { ...this.userDetail };
+
+        // Set the preview image to the current profile image
+        this.previewImage = (this.userDetail.profileImage as string) || '';
+
         this.loading = false; // Set loader to false if the API call is successful
       },
       
@@ -73,8 +84,29 @@ export class ProfileComponent implements OnInit {
       return; // Exit the method without proceeding if there is a file size error
     }
 
-    // Call the updateUser method of the userService
-    this.userService.updateProfile(this.userDetail._id!, this.userDetail).subscribe({
+    // Check for form changes
+    if (!this.isFormChanged()) {
+      // Show message indicating no changes made
+      Swal.fire({
+        icon: 'info',
+        title: 'No Changes Made',
+        text: 'You have made no changes to your profile. Please make changes to update your profile.'
+      });
+      return; // Exit the method without proceeding if there are no changes
+    }
+
+    // Convert form data to support the image upload
+    const formData = new FormData();
+    for (const key in this.userDetail) {
+      // Loop through the properties of the userDetail object
+      if (this.userDetail.hasOwnProperty(key)) {
+        // Append each value to the form data
+        formData.append(key, this.userDetail[key as keyof User]!);
+      }
+    }
+
+    // Call the updateUser method of the userService with the form data
+    this.userService.updateProfile(this.userDetail._id!, formData as any).subscribe({
       next: updateProfile => {
 
         // update the userDetail with the data from the server response
@@ -98,6 +130,12 @@ export class ProfileComponent implements OnInit {
         });
       }
     });
+  }
+
+
+  // Function to check if any changes have been made to the form
+  isFormChanged(): boolean {
+    return JSON.stringify(this.initialUserDetail) !== JSON.stringify(this.userDetail);
   }
 
 
@@ -178,6 +216,7 @@ export class ProfileComponent implements OnInit {
 
 
  // Handles image preview when a file is selected
+ previewImage = '';
  onFileSelected(event: any) {
   const file: File = event.target.files[0];
 
@@ -203,11 +242,28 @@ export class ProfileComponent implements OnInit {
 
     // Define a callback function to be executed when reading is completed
     reader.onload = (e: any) => {
-      // Update the image src eith the data URL
-      this.userDetail.profileImage = e.target.result;
+      // Update the image src with the data URL
+      this.previewImage = e.target.result;
+      // Update the profile image in the userDetail object
+      this.userDetail.profileImage = file;
     }
   }
  }
+
+
+ restrictInput(event: Event) {
+  const inputElement = event.target as HTMLInputElement;
+  const inputValue = inputElement.value;
+  const regex = /^[a-zA-Z]*$/; // Allow only letters
+
+  // Check each character against the expression
+  for (let i = 0; i < inputValue.length; i++) {
+    if (!regex.test(inputValue[i])) {
+      inputElement.value = inputValue.slice(0, i) + inputValue.slice(i + 1);
+      break;
+    }
+  }
+}
 
  
 

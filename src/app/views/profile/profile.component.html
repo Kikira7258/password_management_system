@@ -19,12 +19,12 @@
                 </div>
             </div>
             <div *ngIf="loading" class="loader"></div>
-            <form (ngSubmit)="updateProfile()" *ngIf="!loading">
+            <form (ngSubmit)="updateProfile()" *ngIf="!loading" #profileForm="ngForm">
 
                 <div class="md:flex md:justify-between md:gap-20" *ngIf="userDetail">
 
                     <div class="flex flex-col justify-between">
-                        <img *ngIf="userDetail.profileImage; else noImage" [src]="userDetail.profileImage" alt="Profile Image" class="w-60 h-60 rounded-full mb-12 mx-auto bg-off-white">
+                        <img *ngIf="previewImage; else noImage" [src]="previewImage" alt="Profile Image" class="w-60 h-60 rounded-full mb-12 mx-auto bg-off-white">
                         <ng-template #noImage>
                             <img src="assets/default/default-profile-picture.png" alt="profile Image" class="w-60 h-60 rounded-full mb-12 mx-auto">
                         </ng-template>
@@ -36,21 +36,77 @@
                     <div class="flex flex-col justify-between w-full max-md:mt-8">
                         <div>
                             <label class="text-off-white text-xs" for="fname">First Name</label>
-                            <input type="text" name="fname" class="w-full border-b-[1px] text-white border-off-white bg-transparent outline-none" [(ngModel)]="userDetail.first_nm" />
+                            <input 
+                                class="w-full border-b-[1px] text-white border-off-white bg-transparent outline-none" 
+                                type="text" 
+                                name="fname" 
+                                [(ngModel)]="userDetail.first_nm" 
+                                required 
+                                #fname="ngModel" 
+                                minlength="3" 
+                                maxlength="20" 
+                                pattern="[a-zA-Z]*"
+                                (input)="restrictInput($event)" 
+                            />
+
+                            <!-- Error Message -->
+                            <div *ngIf="fname.invalid && (profileForm.submitted || fname.dirty || fname.touched)" class="text-red text-xs">
+                                <div *ngIf="fname.errors?.['required']">First name is required.</div>
+                                <div *ngIf="fname.errors?.['minlength']">First name must be at least 3 characters long.</div>
+                                <div *ngIf="fname.errors?.['maxlength']">First name cannot be more than 50 characters long.</div>
+                                <div *ngIf="fname.errors?.['pattern']">invalid characters in First name</div>
+                            </div>
                         </div>
                         <div class="max-md:mt-8">
                             <label class="text-off-white text-xs" for="lname">Last Name</label>
-                            <input type="text" name="lname" class="w-full border-b-[1px] text-white border-off-white bg-transparent outline-none" [(ngModel)]="userDetail.last_nm" />
+                            <input 
+                                type="text" 
+                                name="lname" 
+                                class="w-full border-b-[1px] text-white border-off-white bg-transparent outline-none" 
+                                [(ngModel)]="userDetail.last_nm" 
+                                required 
+                                #lname="ngModel" 
+                                minlength="3" 
+                                maxlength="20" 
+                                pattern="[a-zA-Z]*" 
+                                (input)="restrictInput($event)" 
+                                />
+
+                            <!-- Error Message -->
+                            <div *ngIf="lname.invalid && (profileForm.submitted || lname.dirty || lname.touched)" class="text-red text-xs">
+                                <div *ngIf="lname.errors?.['required']">Last name is required.</div>
+                                <div *ngIf="lname.errors?.['minlength']">Last name must be at least 3 characters long.</div>
+                                <div *ngIf="lname.errors?.['maxlength']">Last name cannot be more than 50 characters long.</div>
+                                <div *ngIf="lname.errors?.['pattern']">invalid characters in Last name</div>
+                            </div>
                         </div>
                         <div class="max-md:mt-8">
                             <label class="text-off-white text-xs" for="email">Email</label>
-                            <input type="text" name="email" class="w-full border-b-[1px] text-white border-off-white bg-transparent outline-none" [(ngModel)]="userDetail.email" />
+                            <input 
+                                class="w-full border-b-[1px] text-white border-off-white bg-transparent outline-none" 
+                                type="email" 
+                                name="email" 
+                                [(ngModel)]="userDetail.email" 
+                                required 
+                                email 
+                                #email="ngModel"                                 
+                                minlength="3" 
+                                maxlength="50" 
+                            />
+
+                            <!-- Error Message -->
+                            <div *ngIf="email.invalid && (profileForm.submitted || email.dirty || email.touched)" class="text-red text-xs">
+                                <div *ngIf="email.errors?.['required']">Email is required.</div>
+                                <div *ngIf="email.errors?.['minlength']">Email must be at least 3 characters long.</div>
+                                <div *ngIf="email.errors?.['maxlength']">Email cannot be more than 50 characters long.</div>
+                                <div *ngIf="email.errors?.['email']">Invalid email format</div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="text-dark flex gap-4 justify-end mt-8">
-                    <button type="submit" class="bg-cyan w-20 font-bold rounded-md shadow-md py-[4px] hover:opacity-75">Save</button>
+                    <button type="submit" class="bg-cyan w-20 font-bold rounded-md shadow-md py-[4px] hover:opacity-75" [disabled]="profileForm.invalid" [ngClass]="{ 'disabled-btn': profileForm.invalid}">Save</button>
                     <button class="bg-red w-20 font-bold rounded-md shadow-md py-[4px] hover:opacity-75" routerLink="/items">Cancel</button>
                 </div>
                 

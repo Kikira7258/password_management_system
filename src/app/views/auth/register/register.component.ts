@@ -60,7 +60,23 @@ export class RegisterComponent implements OnInit {
     } else {
       // Log errors to console and show error message to the user
       console.log(form.errors);
-      Swal.fire('Something went wrong');
+      // Swal.fire('Something went wrong');
+    }
+  }
+
+
+
+  restrictInput(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const inputValue = inputElement.value;
+    const regex = /^[a-zA-Z]*$/; // Allow only letters
+
+    // Check each character against the expression
+    for (let i = 0; i < inputValue.length; i++) {
+      if (!regex.test(inputValue[i])) {
+        inputElement.value = inputValue.slice(0, i) + inputValue.slice(i + 1);
+        break;
+      }
     }
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
 
  ngOnInit(): void {}
 
- onSubmit() {
+ onSubmit(form: NgForm) {
   this.userService.login(this.data).subscribe((res) => {
     if (res.status === 'success') {
       this.router.navigateByUrl('/items')
@@ -27,4 +28,5 @@ export class LoginComponent implements OnInit {
     }
   })
  }
+ 
 }
