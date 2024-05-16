@@ -12,25 +12,31 @@ import { AddNoteComponent } from './views/notes/add-note/add-note.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { ItemFormComponent } from './views/items/item-form/item-form.component';
 import { NoteFormComponent } from './views/notes/note-form/note-form.component';
+import { requiresUnauthGuard } from './guards/requires-unauth.guard';
+import { requiresAuthGuard } from './guards/requires-auth.guard';
 
 
 /* ROUTES */
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'items', component: ItemsComponent },
-  { path: 'add-item', component: AddItemComponent },
-  { path: 'item-form/:id', component: ItemFormComponent },
+  // Requires Authentication
+  { path: '', redirectTo: '/items', pathMatch: 'full' },
+  { path: 'items', component: ItemsComponent, canActivate: [requiresAuthGuard] },
+  { path: 'add-item', component: AddItemComponent, canActivate: [requiresAuthGuard] },
+  { path: 'item-form/:id', component: ItemFormComponent, canActivate: [requiresAuthGuard] },
 
-  { path: 'favorites', component: FavoritesComponent },
+  { path: 'favorites', component: FavoritesComponent, canActivate: [requiresAuthGuard] },
 
-  { path: 'notes', component: NotesComponent },
-  { path: 'add-note', component: AddNoteComponent },
-  { path: 'note-form/:id', component: NoteFormComponent },
+  { path: 'notes', component: NotesComponent, canActivate: [requiresAuthGuard] },
+  { path: 'add-note', component: AddNoteComponent, canActivate: [requiresAuthGuard] },
+  { path: 'note-form/:id', component: NoteFormComponent, canActivate: [requiresAuthGuard] },
 
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [requiresAuthGuard] },
+  
 
-  { path: 'profile', component: ProfileComponent },
+  // Requires Unauthentication
+  { path: 'login', component: LoginComponent, canActivate: [requiresUnauthGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [requiresUnauthGuard] },
+
 ];
 
 @NgModule({

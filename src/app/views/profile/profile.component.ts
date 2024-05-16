@@ -46,6 +46,9 @@ export class ProfileComponent implements OnInit {
   // Loader
   loading: boolean = false
 
+  // Add userProfile variable
+  userProfile: any
+
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private elRef: ElementRef) {
     this.initialUserDetail = { ...this.userDetail };
    }

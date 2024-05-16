@@ -2,7 +2,7 @@
 
     <div class="login-container w-1/2 h-fit flex items-stretch rounded-md overflow-hidden">
         <!-- Login -->
-        <div class="bg-white w-1/2 max-lg:w-full p-6 text-dark-gray max-lg:rounded-tr-md max-lg:rounded-br-md">
+        <div class="bg-white w-2/3 max-lg:w-full p-6 text-dark-gray max-lg:rounded-tr-md max-lg:rounded-br-md">
             <h1 class="text-2xl text-center mb-4">Login</h1>
             <form (ngSubmit)="onSubmit(form)" #form="ngForm">
                 <div class="">
@@ -24,14 +24,17 @@
                         
                         <div class="text-red text-xs" *ngIf="email.invalid && (form.submitted || email.dirty || email.touched)">
                             <div *ngIf="email.errors?.['required']">Email is required.</div>
-                            <div *ngIf="email.errors?.['minlength']">Email must be at least 3 characters long.</div>
-                            <div *ngIf="email.errors?.['maxlength']">Email cannot be more than 50 characters long.</div>
+                            <!-- <div *ngIf="email.errors?.['minlength']">Email must be at least 3 characters long.</div>
+                            <div *ngIf="email.errors?.['maxlength']">Email cannot be more than 50 characters long.</div> -->
                             <div *ngIf="email.errors?.['email']">Invalid email format</div>
                         </div>
                     </div>
 
+                    
+
                     <div class="login-input">
-                        <input 
+                        <div class="flex justify-between">                            
+                            <input 
                             type="password" 
                             name="Password" 
                             placeholder=" " 
@@ -42,54 +45,61 @@
                             maxlength="50"
                             [class.invalid]="password.invalid && (password.dirty || password.touched)"
                             [class.valid]="password.valid && (password.dirty || password.touched)"
-                        />
+                            type="{{isPasswordVisible ? 'text' : 'password'}}" 
+                            />
+                            <label for="password">Password</label>
+                            <button type="button" (click)="togglePasswordVisibility()" *ngIf="data.password">
+                                <span class="hover:opacity-70" *ngIf="!isPasswordVisible"><i class="fa-solid fa-eye"></i></span>
+                                <span class="hover:opacity-70" *ngIf="isPasswordVisible"><i class="fa-solid fa-eye-slash"></i></span>
+                            </button>
+                        </div>                        
                         
-                        <label>Password</label>
 
                         <div class="text-red text-xs mt-2" *ngIf="password.invalid && (form.submitted || password.dirty || password.touched)">
                             <div *ngIf="password.errors?.['required']">Password is required.</div>
-                            <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</div>  
-                            <div *ngIf="password.errors?.['maxlength']">Password cannot be more than 50 characters long.</div>
+                            <div class="text-red text-xs my-2" *ngIf="loginError && form.submitted && email.touched && password.touched">Incorrect credentials.</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-xs flex flex-wrap justify-between mt-4 max-md:flex-col">
                     <div class="flex items-center max-w-max max-md:mx-auto">
-                        <input class="mr-2" type="checkbox" name="remember" id="remember" />
+                        <input class="mr-2 checkbox checkbox-accent checkbox-sm" type="checkbox" name="remember" id="remember" [(ngModel)]="data.rememberMe" />
                         <label for="remember">Remember me</label>                        
                     </div>
-                    <a href="" class="text-blue-700 max-dm:mt-4 max-md:text-center max-md:mt-4">Forgot Password?</a>
+                    <button class="text-blue-700 max-dm:mt-4 max-md:text-center max-md:mt-4" type="button" (click)="openForgotPasswordModal()">Forgot Password?</button>
                 </div>
 
                 <div class="flex flex-col items-center my-4">
                     <div class="my-4">
-                        <button type="submit" class="bg-cyan w-40 rounded-md shadow-md shadow-off-white py-[4px]">Login</button>
+                        <button type="submit" class="bg-cyan w-40 rounded-md shadow-md shadow-off-white py-[4px] hover:opacity-90">Login</button>
                     </div>
-                    <a routerLink="/register" class="text-blue-700 text-xs max-lg:mt-4 max-lg:text-center hidden max-lg:block">Register</a>
+                    <a routerLink="/register" class="blue hover:opacity-70 text-xs max-lg:mt-4 max-lg:text-center hidden max-lg:block">Register</a>
                 </div>
-                
+<!--                 
                 <p class="text-center text-xs">Or use your account</p>
                 
                 <div class="flex gap-4 max-w-max mx-auto mt-4">
                     <button><img class="w-8 rounded-full" src="assets/images/logos/facebook.png" alt="Fackbook logo" /></button>
                     <button><img class="w-8 rounded-full" src="assets/images/logos/google.png" alt="Google logo" /></button>
-                </div>
+                </div> -->
             </form>
         </div>
 
         <!-- Welcome back -->
-        <div class="w-1/2 bg-no-repeat bg-cover bg-center bg-[url(assets/backgrounds/bg2.png)] max-lg:hidden">
+        <div class="w-1/3 bg-no-repeat bg-cover bg-center bg-[url(assets/backgrounds/bg2.png)] max-lg:hidden">
             <div class="bg-dark p-6 h-full bg-opacity-50">
-                <div class="py-24 flex flex-col justify-between h-full">
+                <div class=" h-full flex flex-col justify-between">
                     <h1 class="text-2xl text-off-white text-center">Welcome back</h1>
                     <p class="text-off-white text-center">Don't have an account?<br><span>register here.</span></p>
                     
-                    <div class="flex flex-col items-center">
-                        <button class="bg-off-white w-40 rounded-md shadow-md shadow-dark-gray py-[4px]" routerLink="/register">Register</button>
+                    <div class="flex flex-col items-center mb-8">
+                        <button class="bg-off-white w-40 rounded-md shadow-md shadow-dark-gray py-[4px] hover:opacity-90" routerLink="/register">Register</button>
                     </div>                 
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+<app-forgot-password [open]="showForgotPasswordModal" (close)="closeForgotPasswordModal()"></app-forgot-password>

@@ -29,16 +29,17 @@ export class UserService {
 
   // Helper method to handle HTTP errors
   private _handleHttpErrors(defaultValue: any) {
-    return(error: any) => {
-      console.error(error);
+    return(res: any) => {
+      console.error(res);
 
-      if (error.status === 401) {
-        this.router.navigateByUrl('/login');
+      if (res.status === 401) {
+        this.logout();
       }
 
       return of({
-        status: error.status,
-        message: error.message,
+        status: res.error.status || 'error',
+        message: res.error.message || 'An error occurred',
+        error: res.error.error,
         data: defaultValue
       });
     }
@@ -62,8 +63,10 @@ export class UserService {
           // Notify subscribers about the updated user
           this.loggedInUser$.next(this.loggedInUser);
 
-          // Save user data in local storage
-          this.saveUserData(this.auth_token!, this.loggedInUser!);
+          if (data.rememberMe){
+            // Save user data in local storage
+            this.saveUserData(this.auth_token!, this.loggedInUser!);
+          }
         }
       }),
       catchError(this._handleHttpErrors(new User()))
@@ -78,7 +81,7 @@ export class UserService {
   }
 
 
-  // Automaticall attempt to log in the user using stored credentials
+  // Automatically attempt to log in the user using stored credentials
   autoLogin() {
     let tokenFromStorage = localStorage.getItem('authToken');
     let userFromStorage = localStorage.getItem('user');

@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 
@@ -19,7 +20,7 @@ export class ChangePasswordComponent {
 
   constructor(private userService: UserService) {}
 
-  changePassword() {
+  changePassword(form: NgForm) {
     // Ensure new password matches confirm password
     if (this.newPassword !== this.confirmPassword) {
       this.changePasswordError = 'Passwords do not match';

@@ -21,8 +21,9 @@ export class NoteService {
 
       console.log(err);
       return of({
-        status: err.status,
-        message: err.message,
+        status: err.error.status,
+        message: err.error.message,
+        error: err.error.error,
         data: defaultValue
       })
     }

@@ -28,11 +28,32 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
 
+
+     // >> Toggle password visibility <<
+     isPasswordVisible: boolean = false;
+     isConfirmPasswordVisible: boolean = false;
+
+     togglePasswordVisibility() {
+       this.isPasswordVisible = !this.isPasswordVisible;
+     }
+
+     toggleConfirmPasswordVisibility() {
+       this.isConfirmPasswordVisible = !this.isConfirmPasswordVisible;
+     }
+     // >>>>>>>>>>>>>>>>>>>>>>>>>>>
+     
+
   // Function to handle for submission
   onSubmit(form: NgForm) {
     if (form.valid) {
       // Register a user
       this.userService.registerProfile(this.data).subscribe((res) => {
+        if (res.status !== 'success') {
+          if (res.error.email) {
+            form.controls['email'].setErrors({ 'unique': res.error.email });
+          }
+          return;
+        }
 
         // Display a toaster on success user creation
         const Toast = Swal.mixin({
@@ -54,7 +75,7 @@ export class RegisterComponent implements OnInit {
 
         // Reset the form after submission
         form.resetForm();
-        this.router.navigate(['/items']);
+        this.router.navigate(['/login']);
       })
 
     } else {

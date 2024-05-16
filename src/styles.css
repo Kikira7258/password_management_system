@@ -95,7 +95,7 @@ body {
 .register-container .register-input input:not(:placeholder-shown) ~ label {
     top: -20px;
     left: 0;
-    color: #44F6E1;
+    color: #345193;
     font-size: 12px;
 }
 /* Login and Register CSS ends here */

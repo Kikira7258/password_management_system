@@ -45,10 +45,10 @@ export class NotesComponent implements OnInit {
       // Limit notes per page || Pagination
       const startIndex = (this.currentPage - 1) * this.notesPerPage;
       const endIndex = startIndex + this.notesPerPage;
-  
       this.noteService.getAllNotes().subscribe(results => {
         this.notes = results.data.slice(startIndex, endIndex);
         this.totalNotes = results.data.length;
+        console.log(this.notes);
 
         if (this.notes.length === 0 && this.currentPage > 1) {
           this.currentPage = Math.max(1, this.currentPage - 1);

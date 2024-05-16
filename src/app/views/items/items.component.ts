@@ -41,6 +41,13 @@ export class ItemsComponent implements OnInit {
     this.updateFavorite(item)
   }
 
+  getBrandFromUrl(url: string) {
+    const urlParts = url.split('.');
+    console.log(urlParts);
+    
+    return urlParts[1].toLowerCase();
+  }
+
 
   ngOnInit(): void {
       this.getAllItems();

@@ -3,9 +3,9 @@
     <ng-content></ng-content>
     <!-- User profile -->
     <div class="flex items-center cursor-pointer" routerLink="/profile" *ngIf="userProfile">
-        <img src="assets/temps/portrait.png" alt="logo" class="w-12 mb-2 mr-4 rounded-full" />
-        <div class="text-xs hidden sm:block text-off-white"><p>{{userProfile.first_nm }} {{ userProfile.last_nm}}</p>
-            <p class="text-off-white">{{userProfile.email}}</p>
+        <img [src]="userProfile.profileImage ? userProfile.profileImage : 'assets/default/default-profile-picture.png'" alt="logo" class="w-12 h-12 mb-2 mr-4 rounded-full" />
+        <div class="text-xs hidden sm:block text-off-white"><p class="text-ellipsis">{{userProfile.first_nm }} {{ userProfile.last_nm}}</p>
+            <p class="text-off-white text-ellipsis">{{userProfile.email}}</p>
         </div>
     </div>
 </div>

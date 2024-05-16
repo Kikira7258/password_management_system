@@ -34,17 +34,12 @@ export class AddItemComponent implements OnInit {
 
   // >> Create a new item <<
   addItem() {
-    // Check if any input other than the name has a value
-    const hasValue = Object.keys(this.data).filter(key => key !== 'name').some(key => {
-      const value = this.data[key];
-      return typeof value === 'string' && !!value.trim(); // Check if the value is a string and empty after trimming
-    });
-    // const hasValue = Object.values(this.data).some(value => !!value);
 
-    if (!hasValue) {
-     // If none of the fields have a value other than the name, submit the form
      try {
-       this.ItemService.createItem(this.data).subscribe(() => {
+       this.ItemService.createItem(this.data).subscribe((res) => {
+      
+         if (res.message !== 'Success') return;   // guard clause
+
          //Display SweetAlert on Success item creation
          const Toast = Swal.mixin({
            toast: true,
@@ -77,7 +72,7 @@ export class AddItemComponent implements OnInit {
        })
        console.log('Item failed:', error);
      }
-    } 
+    
   }
 
 
