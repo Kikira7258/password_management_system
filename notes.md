@@ -1,7 +1,5 @@
 [TO-DO]
 
-# If Deleting Item note, then give a warning that the item will also be deleted
-
 # Make images corresspond to company images on listing and notes
 
 # Verify email change
@@ -10,4 +8,4 @@
 
 # Oauth for Google and Facebook
 
-# Add valication for change password
+# add password visibility to 'change password'

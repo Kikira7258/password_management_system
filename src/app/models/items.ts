@@ -5,7 +5,7 @@ export class Items {
     password: string;
     website: string;
     timeStamp: string;
-    note: string;
+    note: any;
     favorite: boolean;
     createdAt: Date; 
     updatedAt: Date;

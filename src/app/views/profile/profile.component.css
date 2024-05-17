@@ -29,12 +29,3 @@
 .dropdown-content ul li:hover {
     background-color: #ddd;
 }
-
-
-
-/* Save button styles when form is invalid */
-.disabled-btn {
-    opacity: 0.5;
-    background-color: #ccc;
-    cursor: not-allowed;
-}

@@ -45,10 +45,10 @@ export class ItemFormComponent implements OnInit {
         next: updateItem => {
   
           // update the itemDetail with the data from the server response
-          this.itemDetail = updateItem.data;
+          //this.itemDetail = updateItem.data;
   
           // Log success message to the console
-          console.log('Item updated successfully:', updateItem);
+          console.log('Item updated successfully:', this.itemDetail);
   
           // Show SweetAlert for success
            const Toast = Swal.mixin({
@@ -141,7 +141,10 @@ export class ItemFormComponent implements OnInit {
   loadItemDetails(): void {
     // Call getItemById to fetch item details
     this.itemService.getItemById(this.itemId).subscribe(response => {
-      this.itemDetail = response.data;
+      this.itemDetail = {
+        ...response.data,
+        note: response.data.note && typeof response.data.note === 'object' ? response.data.note.note : '',
+      };
     })
   }
 

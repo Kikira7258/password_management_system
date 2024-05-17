@@ -1,5 +1,5 @@
 import { NgForm } from '@angular/forms';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 
 import Swal from 'sweetalert2';
@@ -18,6 +18,8 @@ export class ChangePasswordComponent {
   confirmPassword: string = '';
   changePasswordError: string = '';
 
+  @ViewChild('passwordForm') form?: NgForm;
+
   constructor(private userService: UserService) {}
 
   changePassword(form: NgForm) {
@@ -26,6 +28,13 @@ export class ChangePasswordComponent {
       this.changePasswordError = 'Passwords do not match';
       return; // Exit the method if passwords do not match
     }
+
+    // Ensure new password is not the same as the current password
+    if (this.newPassword === this.currentPassword) {
+      this.changePasswordError = 'New password cannot be the same as the current password';
+      return; // Exit the method if passwords do not match
+    }
+
 
     // Call the UserService method to change password
     this.userService.changePassword({
@@ -49,6 +58,9 @@ export class ChangePasswordComponent {
           // Logout user
           this.userService.logout();
         })
+        
+        // Clear the form fields and error message
+        this.clearForm(); 
       },
       error: (error: any) => {
         // handle error response from API
@@ -62,7 +74,12 @@ export class ChangePasswordComponent {
   }
 
   closeModal() {
+    this.clearForm(); // Clear the form fields and error message
     this.close.emit();
+  }
+
+  clearForm() {
+    this.form?.reset()
   }
 
 }

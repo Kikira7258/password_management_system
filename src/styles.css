@@ -99,3 +99,14 @@ body {
     font-size: 12px;
 }
 /* Login and Register CSS ends here */
+
+
+
+
+/* Save button styles when form is invalid starts here */
+.disabled-btn {
+    opacity: 0.5;
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+/* Save button styles when form is invalid ends here */
