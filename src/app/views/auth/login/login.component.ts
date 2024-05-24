@@ -37,13 +37,13 @@ closeForgotPasswordModal() {
 
 
 
-   // >> Toggle password visibility <<
-   isPasswordVisible: boolean = false;
+  //  // >> Toggle password visibility <<
+  //  isPasswordVisible: boolean = false;
 
-   togglePasswordVisibility() {
-     this.isPasswordVisible = !this.isPasswordVisible;
-   }
-   // >>>>>>>>>>>>>>>>>>>>>>>>>>>
+  //  togglePasswordVisibility() {
+  //    this.isPasswordVisible = !this.isPasswordVisible;
+  //  }
+  //  // >>>>>>>>>>>>>>>>>>>>>>>>>>>
    
 
  onSubmit(form: NgForm) {

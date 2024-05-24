@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.css']
+  styleUrls: ['./change-password.component.css'],
 })
 export class ChangePasswordComponent {
   @Input() open: boolean = false;
@@ -21,6 +21,16 @@ export class ChangePasswordComponent {
   @ViewChild('passwordForm') form?: NgForm;
 
   constructor(private userService: UserService) {}
+
+
+     // >> Toggle password visibility <<
+     isPasswordVisible: boolean = false;
+
+     togglePasswordVisibility() {
+       this.isPasswordVisible = !this.isPasswordVisible;
+     }
+     // >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
   changePassword(form: NgForm) {
     // Ensure new password matches confirm password

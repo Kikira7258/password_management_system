@@ -21,7 +21,7 @@
                         <i class="list-icon fa-solid fa-shield"></i>
                         <span class="list-item-text">Items</span>
                     </div>
-                    <span class="badge list-item-text group-[.active]:bg-cyan group-hover:bg-cyan">{{totalItemCount}}</span>
+                    <span class="badge list-item-text group-[.active]:bg-cyan group-hover:bg-cyan">{{itemService.itemCount$|async}}</span>
                 </li>
             </a>
 
@@ -31,7 +31,7 @@
                         <i class="list-icon fa-solid fa-heart"></i>
                         <span class="list-item-text">Favorites</span>
                     </div>
-                    <span class="badge list-item-text group-[.active]:bg-cyan group-hover:bg-cyan">{{totalFavoriteCount}}</span>
+                    <span class="badge list-item-text group-[.active]:bg-cyan group-hover:bg-cyan">{{itemService.favoritedItemCount$|async}}</span>
                 </li>
             </a>
 
@@ -41,7 +41,7 @@
                         <i class="list-icon fa-solid fa-sticky-note"></i>
                         <span class="list-item-text">Notes</span>
                     </div>
-                    <span class="badge list-item-text group-[.active]:bg-cyan group-hover:bg-cyan">{{totalNoteCount}}</span>
+                    <span class="badge list-item-text group-[.active]:bg-cyan group-hover:bg-cyan">{{noteService.noteCount$|async}}</span>
                 </li>
             </a>
         </ul>

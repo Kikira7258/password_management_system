@@ -25,6 +25,7 @@ import { ChangePasswordComponent } from './views/profile/change-password/change-
 import { VerifyPasswordComponent } from './views/auth/verify-password/verify-password.component';
 import { ResetPasswordComponent } from './views/auth/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './views/auth/forgot-password/forgot-password.component';
+import { PasswordVisibilityComponent } from './shared/password-visibility/password-visibility.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ForgotPasswordComponent } from './views/auth/forgot-password/forgot-pas
     ChangePasswordComponent,
     VerifyPasswordComponent,
     ResetPasswordComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    PasswordVisibilityComponent
   ],
   imports: [
     BrowserModule,

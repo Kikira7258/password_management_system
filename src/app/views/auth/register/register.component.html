@@ -98,63 +98,36 @@
                     </div>
                     
                     <div class="flex justify-between gap-8">                        
-                        <div class="register-input">
-                            <div class="flex justify-between">
-                                <input 
-                                    type="password" 
-                                    name="password" 
-                                    placeholder=""
-                                    required="true" 
-                                    [(ngModel)]="data.password" 
-                                    minlength="8"
-                                    maxlength="50"
-                                    #password="ngModel"
-                                    [class.invalid]="password.invalid && (password.dirty || password.touched)"
-                                    [class.valid]="password.valid && (password.dirty || password.touched)"
-                                    type="{{isPasswordVisible ? 'text' : 'password'}}" 
-                                    />
+                        <div class="register-input">                           
+                        
+                            <div class="form-Group">
                                 <label for="password">Password</label>
-
-                                <button class="hover:opacity-70 text-sm" type="button" (click)="togglePasswordVisibility()" *ngIf="data.password">
-                                    <span class="hover:opacity-70" *ngIf="!isPasswordVisible"><i class="fa-solid fa-eye"></i></span>
-                                    <span class="hover:opacity-70" *ngIf="isPasswordVisible"><i class="fa-solid fa-eye-slash"></i></span>
-                                </button>                                
-                            </div>
-                            <!-- Error message -->
-                            <div class="text-red text-xs" *ngIf="password.invalid && (form.submitted || password.dirty || password.touched)">
-                                <div *ngIf="password.errors?.['required']">Passsword is required</div>
-                                <div *ngIf="password.errors?.['minlength']">Pass must be at least 8 characters long</div>
-                                <div *ngIf="password.errors?.['maxlength']">Pass cannot be more than 50 characters long</div>
-                            </div>
+                
+                                <app-password-visibility name="password" [(value)]="data.password" #registerPsswrd="passwordVisibility"></app-password-visibility >
+                
+                                <div class="text-red text-xs" *ngIf="registerPsswrd.control?.invalid && (form.submitted || registerPsswrd.control?.dirty || registerPsswrd.control?.touched)">
+                                    <div *ngIf="registerPsswrd.control?.errors?.['required']">Password is required.</div>
+                                    <div *ngIf="registerPsswrd.control?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                                    <div *ngIf="registerPsswrd.control?.errors?.['maxlength']">Password cannot be more than 50 characters long.</div>
+                                </div>
+                            </div>                                
                         </div>
                         
                         
                         <div class="register-input">
-                            <div class="flex justify-between">
-                                <input 
-                                    type="password" 
-                                    name="confirmPassword" 
-                                    placeholder=""
-                                    required="true" 
-                                    [(ngModel)]="data.confirmPassword"
-                                    #confirmPassword="ngModel"
-                                    [class.invalid]="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
-                                    [class.valid]="confirmPassword.valid && (confirmPassword.dirty || confirmPassword.touched)"
-                                    type="{{isConfirmPasswordVisible ? 'text' : 'password'}}"
-                                />
+                            <div class="form-Group">
                                 <label for="confirmPassword">Confirm Password</label>
-
-                                <button class="hover:opacity-70 text-sm" type="button" (click)="toggleConfirmPasswordVisibility()" *ngIf="data.confirmPassword">
-                                    <span class="hover:opacity-70" *ngIf="!isConfirmPasswordVisible"><i class="fa-solid fa-eye"></i></span>
-                                    <span class="hover:opacity-70" *ngIf="isConfirmPasswordVisible"><i class="fa-solid fa-eye-slash"></i></span>
-                                </button>
+                
+                                <app-password-visibility name="confirmPassword" [(value)]="data.confirm_password" #confirmPsswrd="passwordVisibility"></app-password-visibility >
+                
+                                <div class="text-red text-xs" *ngIf="confirmPsswrd.control?.invalid && (form.submitted || confirmPsswrd.control?.dirty || confirmPsswrd.control?.touched)">
+                                    <div *ngIf="confirmPsswrd.control?.errors?.['required']">Password is required.</div>
+                                    <div *ngIf="confirmPsswrd.control?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                                    <div *ngIf="confirmPsswrd.control?.errors?.['maxlength']">Password cannot be more than 50 characters long.</div>
+                                </div>
                             </div>
-                            <!-- Display error message if passwords do not match -->
-                            <div class="text-red text-xs" *ngIf="data.password !== data.confirmPassword && (form.submitted || confirmPassword.dirty || confirmPassword.touched)">
-                                <div *ngIf="confirmPassword.errors?.['required']">Confirm Password is required</div>
-                                <div *ngIf="data.password !== data.confirmPassword">Passwords doesn't match</div>
-                            </div>
-                        </div>                                                
+                        </div>   
+                        
                     </div>
 
                 </div>

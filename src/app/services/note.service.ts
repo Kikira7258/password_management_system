@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, lastValueFrom, Observable, of, tap } from 'rxjs';
 import { APIResponse } from '../models/api-response';
 import { Notes } from '../models/notes';
 import { Router } from '@angular/router';
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class NoteService {
 
   private API_URL = 'http://localhost:8080/api/v1/note';
+
+  public noteCount$ = new BehaviorSubject<number>(0);
 
   private _handleHttpErrors(defaultValue: any) {
     return(err: any) => {
@@ -29,11 +31,18 @@ export class NoteService {
     }
   }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { 
+    // Get the initial notes count
+    lastValueFrom(this.getAllNotes());
+  }
 
   // get all notes
   getAllNotes(): Observable<APIResponse<Notes[]>> {
-    return this.http.get<APIResponse<Notes[]>>(this.API_URL).pipe(catchError(this._handleHttpErrors([])));
+    return this.http.get<APIResponse<Notes[]>>(this.API_URL).pipe(tap((res:any)=>{
+      // update the item count whenever a request is sent.
+       this.noteCount$.next(res.data.length);
+      
+    }),catchError(this._handleHttpErrors([])));
   }
 
   // get note by id
@@ -43,7 +52,11 @@ export class NoteService {
 
   // create new note
   createNote(data: Notes): Observable<APIResponse<Notes>> {
-    return this.http.post<APIResponse<Notes>>(this.API_URL, data).pipe(catchError(this._handleHttpErrors(new Notes())));
+    return this.http.post<APIResponse<Notes>>(this.API_URL, data).pipe(tap((res:any)=>{
+      // update the item count whenever a request is sent.
+       this.noteCount$.next(this.noteCount$.getValue() + 1);
+      
+    }),catchError(this._handleHttpErrors(new Notes())));
   }
 
   // update note
@@ -53,7 +66,11 @@ export class NoteService {
 
   //delete note
   deleteNote(id: string): Observable<APIResponse<Notes>> {
-    return this.http.delete<APIResponse<Notes>>(this.API_URL + '/' + id).pipe(catchError(this._handleHttpErrors(new Notes())))
+    return this.http.delete<APIResponse<Notes>>(this.API_URL + '/' + id).pipe(tap((res:any)=>{
+      // update the item count whenever a request is sent.
+       this.noteCount$.next(this.noteCount$.getValue() - 1);
+      
+    }),catchError(this._handleHttpErrors(new Notes())))
   }
 
 }

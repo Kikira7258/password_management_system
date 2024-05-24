@@ -6,6 +6,7 @@
             <h1 class="text-2xl text-center mb-4">Login</h1>
             <form (ngSubmit)="onSubmit(form)" #form="ngForm">
                 <div class="">
+                    
                     <div class="login-input">                        
                         <input 
                             type="email" 
@@ -33,32 +34,26 @@
                     
 
                     <div class="login-input">
-                        <div class="flex justify-between">                            
-                            <input 
-                            type="password" 
-                            name="Password" 
-                            placeholder=" " 
-                            [(ngModel)]="data.password" 
-                            required 
-                            #password="ngModel"
-                            minlength="6"
-                            maxlength="50"
-                            [class.invalid]="password.invalid && (password.dirty || password.touched)"
-                            [class.valid]="password.valid && (password.dirty || password.touched)"
-                            type="{{isPasswordVisible ? 'text' : 'password'}}" 
-                            />
-                            <label for="password">Password</label>
-                            <button type="button" (click)="togglePasswordVisibility()" *ngIf="data.password">
-                                <span class="hover:opacity-70" *ngIf="!isPasswordVisible"><i class="fa-solid fa-eye"></i></span>
-                                <span class="hover:opacity-70" *ngIf="isPasswordVisible"><i class="fa-solid fa-eye-slash"></i></span>
-                            </button>
-                        </div>                        
+                        
+                        
+                        
+                        <div class="form-Group">
+                            <label for="loginPassword">Password</label>
+            
+                            <app-password-visibility name="loginPassword" [(value)]="data.password" #loginPsswrd="passwordVisibility"></app-password-visibility >
+            
+                            <div class="text-red text-xs" *ngIf="loginPsswrd.control?.invalid && (form.submitted || loginPsswrd.control?.dirty || loginPsswrd.control?.touched)">
+                                <div *ngIf="loginPsswrd.control?.errors?.['required']">Password is required.</div>
+                                <div *ngIf="loginPsswrd.control?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                                <div *ngIf="loginPsswrd.control?.errors?.['maxlength']">Password cannot be more than 50 characters long.</div>
+                            </div>
+                        </div>
                         
 
-                        <div class="text-red text-xs mt-2" *ngIf="password.invalid && (form.submitted || password.dirty || password.touched)">
+                        <!-- <div class="text-red text-xs mt-2" *ngIf="password.invalid && (form.submitted || password.dirty || password.touched)">
                             <div *ngIf="password.errors?.['required']">Password is required.</div>
                             <div class="text-red text-xs my-2" *ngIf="loginError && form.submitted && email.touched && password.touched">Incorrect credentials.</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 

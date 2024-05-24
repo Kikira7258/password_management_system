@@ -8,4 +8,4 @@
 
 # Oauth for Google and Facebook
 
-# add password visibility to 'change password'
+# Update number count in real time
