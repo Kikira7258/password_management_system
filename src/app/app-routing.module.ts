@@ -14,6 +14,8 @@ import { ItemFormComponent } from './views/items/item-form/item-form.component';
 import { NoteFormComponent } from './views/notes/note-form/note-form.component';
 import { requiresUnauthGuard } from './guards/requires-unauth.guard';
 import { requiresAuthGuard } from './guards/requires-auth.guard';
+import { ResetPasswordComponent } from './views/auth/reset-password/reset-password.component';
+import { VerifyPasswordComponent } from './views/auth/verify-password/verify-password.component';
 
 
 /* ROUTES */
@@ -36,6 +38,10 @@ const routes: Routes = [
   // Requires Unauthentication
   { path: 'login', component: LoginComponent, canActivate: [requiresUnauthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [requiresUnauthGuard] },
+
+
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'verify-password', component: VerifyPasswordComponent },
 
 ];
 

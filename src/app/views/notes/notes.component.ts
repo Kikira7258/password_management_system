@@ -3,6 +3,7 @@ import { NoteService } from 'src/app/services/note.service';
 import { Notes } from 'src/app/models/notes';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import * as psl from 'psl';
 
 @Component({
   selector: 'app-notes',
@@ -34,6 +35,13 @@ export class NotesComponent implements OnInit {
 
   ngOnInit(): void {
       this.getAllNotes();
+  }
+
+  getBrandFromUrl(url: string) {
+    let parsed = psl.parse(url);
+
+    // @ts-ignore-next-line
+    return parsed.sld || '';
   }
 
 

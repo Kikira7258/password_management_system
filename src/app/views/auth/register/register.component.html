@@ -100,31 +100,27 @@
                     <div class="flex justify-between gap-8">                        
                         <div class="register-input">                           
                         
-                            <div class="form-Group">
-                                <label for="password">Password</label>
-                
-                                <app-password-visibility name="password" [(value)]="data.password" #registerPsswrd="passwordVisibility"></app-password-visibility >
-                
-                                <div class="text-red text-xs" *ngIf="registerPsswrd.control?.invalid && (form.submitted || registerPsswrd.control?.dirty || registerPsswrd.control?.touched)">
-                                    <div *ngIf="registerPsswrd.control?.errors?.['required']">Password is required.</div>
-                                    <div *ngIf="registerPsswrd.control?.errors?.['minlength']">Password must be at least 6 characters long.</div>
-                                    <div *ngIf="registerPsswrd.control?.errors?.['maxlength']">Password cannot be more than 50 characters long.</div>
-                                </div>
-                            </div>                                
+                            <label for="password">Password</label>
+            
+                            <app-password-visibility name="password" [(value)]="data.password" #registerPsswrd="passwordVisibility"></app-password-visibility >
+            
+                            <div class="text-red text-xs" *ngIf="registerPsswrd.control?.invalid && (form.submitted || registerPsswrd.control?.dirty || registerPsswrd.control?.touched)">
+                                <div *ngIf="registerPsswrd.control?.errors?.['required']">Password is required.</div>
+                                <div *ngIf="registerPsswrd.control?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                                <div *ngIf="registerPsswrd.control?.errors?.['maxlength']">Password cannot be more than 50 characters long.</div>
+                            </div>                      
                         </div>
                         
                         
                         <div class="register-input">
-                            <div class="form-Group">
-                                <label for="confirmPassword">Confirm Password</label>
-                
-                                <app-password-visibility name="confirmPassword" [(value)]="data.confirm_password" #confirmPsswrd="passwordVisibility"></app-password-visibility >
-                
-                                <div class="text-red text-xs" *ngIf="confirmPsswrd.control?.invalid && (form.submitted || confirmPsswrd.control?.dirty || confirmPsswrd.control?.touched)">
-                                    <div *ngIf="confirmPsswrd.control?.errors?.['required']">Password is required.</div>
-                                    <div *ngIf="confirmPsswrd.control?.errors?.['minlength']">Password must be at least 6 characters long.</div>
-                                    <div *ngIf="confirmPsswrd.control?.errors?.['maxlength']">Password cannot be more than 50 characters long.</div>
-                                </div>
+                            <label for="confirmPassword">Confirm Password</label>
+            
+                            <app-password-visibility name="confirmPassword" [(value)]="data.confirm_password" #confirmPsswrd="passwordVisibility"></app-password-visibility >
+            
+                            <div class="text-red text-xs" *ngIf="confirmPsswrd.control?.invalid && (form.submitted || confirmPsswrd.control?.dirty || confirmPsswrd.control?.touched)">
+                                <div *ngIf="confirmPsswrd.control?.errors?.['required']">Password is required.</div>
+                                <div *ngIf="confirmPsswrd.control?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                                <div *ngIf="confirmPsswrd.control?.errors?.['maxlength']">Password cannot be more than 50 characters long.</div>
                             </div>
                         </div>   
                         

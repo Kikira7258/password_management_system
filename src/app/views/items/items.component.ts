@@ -3,6 +3,7 @@ import { ItemService } from '../../services/item.service';
 import { Items } from '../../models/items';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import * as psl from 'psl';
 
 @Component({
   selector: 'app-items',
@@ -42,10 +43,10 @@ export class ItemsComponent implements OnInit {
   }
 
   getBrandFromUrl(url: string) {
-    const urlParts = url.split('.');
-    console.log(urlParts);
-    
-    return urlParts[1].toLowerCase();
+    let parsed = psl.parse(url);
+
+    // @ts-ignore-next-line
+    return parsed.sld || '';
   }
 
 

@@ -31,8 +31,8 @@
                          <div class="flex items-center">
 
                             <!-- only show logo if the note is linked to an item -->
-                             <div class="mr-8" *ngIf="note.item">
-                                 <img src="assets/images/logos/yahoo.png" alt="logo" class="w-8 rounded-full mx-auto" />
+                             <div class="mr-8 text-2xl" *ngIf="note.item">
+                                <i class="fa-brands fa-{{getBrandFromUrl(note.item.website)}}"></i>
                              </div>
                             <!--- ---------------------------------------- -->
 

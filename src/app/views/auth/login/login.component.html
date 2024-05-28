@@ -36,8 +36,7 @@
                     <div class="login-input">
                         
                         
-                        
-                        <div class="form-Group">
+                
                             <label for="loginPassword">Password</label>
             
                             <app-password-visibility name="loginPassword" [(value)]="data.password" #loginPsswrd="passwordVisibility"></app-password-visibility >
@@ -47,7 +46,7 @@
                                 <div *ngIf="loginPsswrd.control?.errors?.['minlength']">Password must be at least 6 characters long.</div>
                                 <div *ngIf="loginPsswrd.control?.errors?.['maxlength']">Password cannot be more than 50 characters long.</div>
                             </div>
-                        </div>
+                      
                         
 
                         <!-- <div class="text-red text-xs mt-2" *ngIf="password.invalid && (form.submitted || password.dirty || password.touched)">

@@ -4,6 +4,7 @@ import { BehaviorSubject, catchError, lastValueFrom, Observable, of, tap } from 
 import { APIResponse } from '../models/api-response';
 import { Items } from '../models/items';
 import { Router } from '@angular/router';
+import { NoteService } from './note.service';
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +34,9 @@ export class ItemService {
     }
   }
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private noteService:NoteService, private http: HttpClient, private router: Router) {
     // Get the initial favorited item count
+    lastValueFrom(this.getAllItems());
     lastValueFrom(this.getAllItems(true));
   }
 
@@ -61,6 +63,9 @@ export class ItemService {
   createItem(data: Items): Observable<APIResponse<Items>> {
     return this.http.post<APIResponse<Items>>(this.API_URL, data).pipe(tap((res:any)=>{
       this.itemCount$.next(this.itemCount$.getValue() + 1);
+      if (res.data.item.favorite) this.favoritedItemCount$.next(this.favoritedItemCount$.getValue() + 1);
+      if (res.data.note) this.noteService.noteCount$.next(this.noteService.noteCount$.getValue() + 1);
+      
     }),catchError(this._handleHttpErrors(new Items())))
   }
 
