@@ -146,6 +146,12 @@ export class UserService {
   // >>>>>>>>>>>>>>>>>>>> End of CRUD Operations <<<<<<<<<<<<<<<<<<<<
 
 
+    // Add the forgotPassword method to your UserService class
+    forgotPassword(email: string): Observable<APIResponse> {
+      return this.http.post<APIResponse>(`${this.API_URL}/forgot-password`, { email }).pipe(
+        catchError(this._handleHttpErrors(new User()))
+      );
+    }
 
     // Add the changePassword method to your UserService class
     changePassword(credentials:{currentPassword: string, newPassword: string, confirmPassword: string}): Observable<APIResponse> {
