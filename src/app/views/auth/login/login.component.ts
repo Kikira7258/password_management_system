@@ -36,17 +36,19 @@ closeForgotPasswordModal() {
  ngOnInit(): void {}
 
 
-
-  //  // >> Toggle password visibility <<
-  //  isPasswordVisible: boolean = false;
-
-  //  togglePasswordVisibility() {
-  //    this.isPasswordVisible = !this.isPasswordVisible;
-  //  }
-  //  // >>>>>>>>>>>>>>>>>>>>>>>>>>>
+ onInputChange() {
+  this.loginError = false; // Reset login error on input change
+ }
    
 
  onSubmit(form: NgForm) {
+
+  if(form.invalid) {
+    return; // Exit if form is invalid
+  }
+
+  this.loginError = false; // Reset the error flag on each login attempt
+
   this.userService.login(this.data).subscribe((res) => {
     if (res.status === 'success') {
       this.router.navigateByUrl('/items')

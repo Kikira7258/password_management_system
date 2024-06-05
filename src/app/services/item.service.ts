@@ -79,7 +79,10 @@ export class ItemService {
   // delete item
   deleteItem(id: string): Observable<APIResponse<Items>> {
     return this.http.delete<APIResponse<Items>>(this.API_URL + '/' + id).pipe(tap((res:any)=>{
+      console.log(res);
+      
       this.itemCount$.next(this.itemCount$.getValue() - 1);
+      if (res.data.favorite) this.favoritedItemCount$.next(this.favoritedItemCount$.getValue() - 1);
     }),catchError(this._handleHttpErrors(new Items())));
   }
   

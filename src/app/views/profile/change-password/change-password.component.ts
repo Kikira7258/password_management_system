@@ -61,7 +61,7 @@ export class ChangePasswordComponent {
         // Show Sweet Alter message
         Swal.fire({
           icon: 'success',
-          title: 'Password Updated successfully.',
+          title: 'Password updated successfully.',
           showConfirmButton: false,
           timer: 1500 // Close after 1.5 seconds
         }).then(() => {

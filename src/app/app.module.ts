@@ -22,8 +22,6 @@ import { HeaderComponent } from './shared/header/header.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ItemFormComponent } from './views/items/item-form/item-form.component';
 import { ChangePasswordComponent } from './views/profile/change-password/change-password.component';
-import { VerifyPasswordComponent } from './views/auth/verify-password/verify-password.component';
-import { ResetPasswordComponent } from './views/auth/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './views/auth/forgot-password/forgot-password.component';
 import { PasswordVisibilityComponent } from './shared/password-visibility/password-visibility.component';
 
@@ -44,8 +42,6 @@ import { PasswordVisibilityComponent } from './shared/password-visibility/passwo
     HeaderComponent,
     ItemFormComponent,
     ChangePasswordComponent,
-    VerifyPasswordComponent,
-    ResetPasswordComponent,
     ForgotPasswordComponent,
     PasswordVisibilityComponent
   ],

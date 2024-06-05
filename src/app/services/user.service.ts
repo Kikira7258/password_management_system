@@ -28,7 +28,7 @@ export class UserService {
   }
 
   // Helper method to handle HTTP errors
-  private _handleHttpErrors(defaultValue: any) {
+  private _handleHttpErrors(defaultValue: any, customErrorMessage?: string) {
     return(res: any) => {
       console.error(res);
 
@@ -38,7 +38,7 @@ export class UserService {
 
       return of({
         status: res.error.status || 'error',
-        message: res.error.message || 'An error occurred',
+        message: customErrorMessage || res.error.message || 'An error occurred',
         error: res.error.error,
         data: defaultValue
       });
@@ -145,13 +145,29 @@ export class UserService {
 
   // >>>>>>>>>>>>>>>>>>>> End of CRUD Operations <<<<<<<<<<<<<<<<<<<<
 
-
     // Add the forgotPassword method to your UserService class
-    forgotPassword(email: string): Observable<APIResponse> {
+    sendForgotPasswordEmail(email: string): Observable<APIResponse> {
       return this.http.post<APIResponse>(`${this.API_URL}/forgot-password`, { email }).pipe(
         catchError(this._handleHttpErrors(new User()))
       );
     }
+
+    
+    // Add the verifyOTP method to your UserService class
+    verifyOTP(otp: string, email: string): Observable<APIResponse> {
+      return this.http.post<APIResponse>(`${this.API_URL}/verify-otp`, { otp, email }).pipe(
+        catchError(this._handleHttpErrors(new User()))
+      );
+    }
+
+    
+    // Add the resetPassword method to your UserService class
+    resetPassword(credentials:{newPassword: string, confirmPassword: string, email: string, otp: string}): Observable<APIResponse> {
+      return this.http.post<APIResponse>(`${this.API_URL}/reset-password`, credentials).pipe(
+        catchError(this._handleHttpErrors(new User()))
+      );
+    }
+    
 
     // Add the changePassword method to your UserService class
     changePassword(credentials:{currentPassword: string, newPassword: string, confirmPassword: string}): Observable<APIResponse> {
@@ -159,6 +175,8 @@ export class UserService {
         catchError(this._handleHttpErrors(new User()))
       );
     }
+
+
 
     // Define a common error handler method
     // private handleError(error: any): Observable<never> {
