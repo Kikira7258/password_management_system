@@ -37,6 +37,7 @@ export class UserService {
       }
 
       return of({
+        statusCode: res.status,
         status: res.error.status || 'error',
         message: customErrorMessage || res.error.message || 'An error occurred',
         error: res.error.error,
@@ -175,13 +176,5 @@ export class UserService {
         catchError(this._handleHttpErrors(new User()))
       );
     }
-
-
-
-    // Define a common error handler method
-    // private handleError(error: any): Observable<never> {
-    //   console.error('An error occurred:', error);
-    //   return throwError('Something went wrong. Please try again later.');
-    // }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -53,8 +54,16 @@ closeForgotPasswordModal() {
     if (res.status === 'success') {
       this.router.navigateByUrl('/items')
     } else {
-      // Handle login failure, e.g, show an error message
-      console.log('Login failed:', res.message);
+
+      if (res.statusCode === 429) {
+        Swal.fire({
+        title: 'Maximum Attempts Reached',
+        text: 'You have reached the maximum number of attempts. Please try again in 10 minutes.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+       })
+      }
+
       this.loginError = true; // Set loginError to true to display error message
     }
   });

@@ -49,6 +49,18 @@ export class RegisterComponent implements OnInit {
       // Register a user
       this.userService.registerProfile(this.data).subscribe((res) => {
         if (res.status !== 'success') {
+
+          
+          if (res.statusCode === 429) {
+            Swal.fire({
+            title: 'Maximum Attempts Reached',
+            text: 'You have reached the maximum number of attempts. Please try again in 10 minutes.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+            })
+          }
+          
+
           if (res.error.email) {
             form.controls['email'].setErrors({ 'unique': res.error.email });
           }
@@ -78,11 +90,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       })
 
-    } else {
-      // Log errors to console and show error message to the user
-      console.log(form.errors);
-      // Swal.fire('Something went wrong');
-    }
+    } 
   }
 
 
