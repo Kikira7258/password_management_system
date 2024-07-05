@@ -82,17 +82,22 @@
                         </div>
                         <div class="max-md:mt-8">
                             <label class="text-off-white text-xs" for="email">Email</label>
-                            <input 
-                                class="w-full border-b-[1px] text-white border-off-white bg-transparent outline-none" 
-                                type="email" 
-                                name="email" 
-                                [(ngModel)]="userDetail.email" 
-                                required 
-                                email 
-                                #email="ngModel"                                 
-                                minlength="3" 
-                                maxlength="50" 
-                            />
+                            <div class="lg:flex justify-between">
+                                <input 
+                                    class="w-full border-b-[1px] text-white border-off-white bg-transparent outline-none" 
+                                    type="email" 
+                                    name="email" 
+                                    [(ngModel)]="userDetail.email" 
+                                    required 
+                                    email 
+                                    #email="ngModel"                                 
+                                    minlength="3" 
+                                    maxlength="50"          
+                                    (focus)="showVerificationMessage = true"                           
+                                    (blur)="showVerificationMessage = email.dirty ?? false"
+                                />
+                                <span *ngIf="showVerificationMessage" class="text-off-white text-xs border-b-[1px] border-off-white whitespace-nowrap">Editing email requires OTP verification</span>
+                            </div>
 
                             <!-- Error Message -->
                             <div *ngIf="email.invalid && (profileForm.submitted || email.dirty || email.touched)" class="text-red text-xs">
@@ -116,3 +121,4 @@
 </div>
 
 <app-change-password [open]="showChangePasswordModal" (close)="closeChangePasswordModal()"></app-change-password>
+<app-change-email-otp [open]="showEmailOtpModal" (submit)="submitEmailOtp($event)" (close)="closeEmailOtpModal()"></app-change-email-otp>

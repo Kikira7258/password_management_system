@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
     last_nm: '',
     email: '',
     password: '',
-    profileImage: ''
+    profileImage: '',
   }
 
   // Initialize initialUserDetail to store initial form values (This is so the form don't save if there are no changes made)
@@ -33,12 +33,27 @@ export class ProfileComponent implements OnInit {
   // Initialize showChangePasswordModal variable
   showChangePasswordModal: boolean = false;
 
+  // Initialize verificationMessage variable
+  showVerificationMessage: boolean = false;
+
+  // Initialize showOtpModal variable
+  showEmailOtpModal: boolean = false;
+
   openChangePasswordModal() {
     this.showChangePasswordModal = true;
   }
 
   closeChangePasswordModal() {
     this.showChangePasswordModal = false;
+  }
+
+
+  openOtpModal() {
+    this.showEmailOtpModal = true
+  }
+
+  closeEmailOtpModal(){
+    this.showEmailOtpModal = false
   }
  // >> ------------------------------- <<
 
@@ -62,7 +77,14 @@ export class ProfileComponent implements OnInit {
     this.loading = true; // Set loader to true before making the API call
     this.userService.getProfile().subscribe({
       next: (response) => {
-        this.userDetail = response.data.user;
+        if (!response.data.user) return;
+
+        this.userDetail = {
+          first_nm: response.data.user.first_nm,
+          last_nm: response.data.user.last_nm,
+          email: response.data.user.email,
+          profileImage: response.data.user.profileImage
+        };
 
         // Store initial form values
         this.initialUserDetail = { ...this.userDetail };
@@ -78,6 +100,11 @@ export class ProfileComponent implements OnInit {
         this.loading = false; // Set loader to false if there's an error
       }
     });
+  }
+
+  submitEmailOtp(otp: string) {
+    this.userDetail.otp = otp;
+    this.updateProfile();
   }
 
 
@@ -109,18 +136,34 @@ export class ProfileComponent implements OnInit {
     }
 
     // Call the updateUser method of the userService with the form data
-    this.userService.updateProfile(this.userDetail._id!, formData as any).subscribe({
-      next: updateProfile => {
+    this.userService.updateProfile(formData as any).subscribe({
+      next: (response) => {
+        if(response.status !== 'success') return;
+
+        if (response.data.otp === 'sent') {
+          this.showEmailOtpModal = true;
+          return;
+        }
 
         // update the userDetail with the data from the server response
-        this.userDetail = updateProfile.data.user;
+        this.userDetail = {
+          first_nm: response.data.user.first_nm,
+          last_nm: response.data.user.last_nm,
+          email: response.data.user.email,
+          profileImage: response.data.user.profileImage
+        };
 
         // Log success message to the console
-        console.log('User updated successfully:', updateProfile);
+        console.log('User updated successfully:', response);
 
         // Show SweetAlert for success
         this.showSuccessToast();
 
+        // Check if email has changed
+        if (this.userDetail.email !== this.initialUserDetail.email) {
+          // Show OTP modal for email verification
+          this.showEmailOtpModal = true;
+        }
       },
       error: (error) => {
         console.log('Error updating profile:', error);
@@ -171,7 +214,7 @@ export class ProfileComponent implements OnInit {
   }).then((result) => {
     if (result.isConfirmed) {
       // Call the delete account API enpoint
-      this.userService.deleteProfile(this.userDetail._id!).subscribe({
+      this.userService.deleteProfile().subscribe({
         next: () => {
           // on successful deletion, navigate to the login page or perform any other action
           this.router.navigate(['/login']);
@@ -267,7 +310,6 @@ export class ProfileComponent implements OnInit {
     }
   }
 }
-
  
 
 }

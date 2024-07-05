@@ -1,7 +1,6 @@
-import { NgForm } from '@angular/forms';
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-
 import Swal from 'sweetalert2';
 
 @Component({
@@ -24,11 +23,11 @@ export class ChangePasswordComponent {
 
 
      // >> Toggle password visibility <<
-     isPasswordVisible: boolean = false;
+    //  isPasswordVisible: boolean = false;
 
-     togglePasswordVisibility() {
-       this.isPasswordVisible = !this.isPasswordVisible;
-     }
+    //  togglePasswordVisibility() {
+    //    this.isPasswordVisible = !this.isPasswordVisible;
+    //  }
      // >>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 

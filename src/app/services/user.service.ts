@@ -123,7 +123,7 @@ export class UserService {
 
     // Get user by ID || get user profile
     getProfile(): Observable<APIResponse<any>> {
-      return this.http.get<APIResponse<any>>(`${this.API_URL}/${this.loggedInUser?._id}`).pipe(tap((res) => {
+      return this.http.get<APIResponse<any>>(`${this.API_URL}/profile`).pipe(tap((res) => {
         
       }), catchError(this._handleHttpErrors(new User())));
     }
@@ -135,13 +135,13 @@ export class UserService {
 
 
     // Update user
-    updateProfile(id: string, data:User): Observable<APIResponse<any>> {
-      return this.http.put<APIResponse<any>>(this.API_URL + '/' + id, data).pipe(catchError(this._handleHttpErrors(new User())));
+    updateProfile(data:User): Observable<APIResponse<any>> {
+      return this.http.put<APIResponse<any>>(this.API_URL + '/profile', data).pipe(catchError(this._handleHttpErrors(new User())));
     }
 
 
-    deleteProfile(id: string): Observable<APIResponse<User>> {
-      return this.http.delete<APIResponse<User>>(this.API_URL + '/' + id).pipe(catchError(this._handleHttpErrors(new User())));
+    deleteProfile(): Observable<APIResponse<User>> {
+      return this.http.delete<APIResponse<User>>(this.API_URL + '/profile').pipe(catchError(this._handleHttpErrors(new User())));
     }
 
   // >>>>>>>>>>>>>>>>>>>> End of CRUD Operations <<<<<<<<<<<<<<<<<<<<
@@ -176,5 +176,6 @@ export class UserService {
         catchError(this._handleHttpErrors(new User()))
       );
     }
+
 
 }

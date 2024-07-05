@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../../services/item.service';
 import { Items } from '../../models/items';
 import Swal from 'sweetalert2';
+import * as psl from 'psl';
 
 @Component({
   selector: 'app-favorites',
@@ -38,6 +39,14 @@ constructor(private itemService: ItemService){}
 
     item.favorite = !item.favorite;
     this.updateFavorite(item)
+  }
+
+
+  getBrandFromUrl(url: string) {
+    let parsed = psl.parse(url);
+
+    // @ts-ignore-next-line
+    return parsed.sld || '';
   }
 
 

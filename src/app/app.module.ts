@@ -24,6 +24,7 @@ import { ItemFormComponent } from './views/items/item-form/item-form.component';
 import { ChangePasswordComponent } from './views/profile/change-password/change-password.component';
 import { ForgotPasswordComponent } from './views/auth/forgot-password/forgot-password.component';
 import { PasswordVisibilityComponent } from './shared/password-visibility/password-visibility.component';
+import { ChangeEmailOtpComponent } from './views/profile/change-email-otp/change-email-otp.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { PasswordVisibilityComponent } from './shared/password-visibility/passwo
     ItemFormComponent,
     ChangePasswordComponent,
     ForgotPasswordComponent,
-    PasswordVisibilityComponent
+    PasswordVisibilityComponent,
+    ChangeEmailOtpComponent
   ],
   imports: [
     BrowserModule,

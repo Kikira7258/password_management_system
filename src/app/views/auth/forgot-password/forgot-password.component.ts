@@ -144,15 +144,9 @@ export class ForgotPasswordComponent {
       confirmPassword: this.confirmPassword
     }).subscribe({
       next: (res) =>  {
-        if (res.status === 'success') {
-        // Password successfully reset
-        this.closeModal(); // Close the modal
+        console.log('Reset Password Response:', res);
 
-        this.step = 'forget';
-        this.email = '';
-        this.otp = '';
-        this.newPassword = '';
-        this.confirmPassword = '';
+        if (res.status === 'success') {
 
         // Show Sweet Alter message
         Swal.fire({
@@ -160,17 +154,28 @@ export class ForgotPasswordComponent {
           title: 'Password reset successfully.',
           showConfirmButton: false,
           timer: 1500 // Close after 1.5 seconds
-        })
+        }).then(() => {
+          // Password successfully reset
+          this.closeModal(); // Close the modal
+  
+          this.step = 'forget';
+          this.email = '';
+          this.otp = '';
+          this.newPassword = '';
+          this.confirmPassword = '';
+
+          this.resetPasswordError = '';
+        });
        }
       },
       error: (error: any) => {
+        console.error('Error resetting password:', error);
         // handle error response from API
         if (error.status === 401) {
           this.resetPasswordError = 'An error occurred. Please try again.';
         }
       }
-    })
-
+    });
   }
 
 

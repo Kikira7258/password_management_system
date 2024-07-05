@@ -6,6 +6,7 @@ export class User {
         public email? : string, 
         public password? : string,
         public confirmPassword? : string,
-        public profileImage? : string | File
+        public profileImage? : string | File,
+        public otp?: string
     ) {}
 }
